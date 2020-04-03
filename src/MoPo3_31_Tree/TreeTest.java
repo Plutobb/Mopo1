@@ -4,10 +4,10 @@ package MoPo3_31_Tree;
 public class TreeTest {
     //二叉树节点建立;
     public static class TreeNode{
-        public char val;
+        public int val;
         public TreeNode left;
         public TreeNode right;
-        TreeNode(char x){
+        public TreeNode(int x){
             val = x;
         }
     }
