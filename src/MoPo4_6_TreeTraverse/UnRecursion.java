@@ -50,7 +50,7 @@ public class UnRecursion {
     }
     public static List<Integer> postOrderTraversal(TreeTest.TreeNode root){
         //宽度搜索,结果逆序输出就得到后序遍历的结果;
-        List<Integer> output = new LinkedList<>();
+        LinkedList<Integer> output = new LinkedList<>();
         LinkedList<TreeTest.TreeNode> stack = new LinkedList<>();
         if(root == null){
             return output;
@@ -58,7 +58,7 @@ public class UnRecursion {
         stack.add(root);
         while (!stack.isEmpty()){
             TreeTest.TreeNode node = stack.pollLast();
-            output.add(node.val);
+            output.addFirst(node.val);
             if (node.left != null){
                 stack.add(node.left);
             }
