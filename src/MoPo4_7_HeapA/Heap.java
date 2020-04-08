@@ -1,7 +1,5 @@
 package MoPo4_7_HeapA;
 
-import java.sql.Array;
-import java.util.Arrays;
 import java.util.PriorityQueue;
 
 public class Heap {
@@ -71,7 +69,7 @@ public class Heap {
     public static void main(String[] args) {
         int[] array = {27,15,19,18,28,34,65,49,25,37};
         int[] intHeap = {8,7,6,1,5,3};
-        PriorityQueue queue = new PriorityQueue();
+        PriorityQueue<Integer> queue = new PriorityQueue<>();
         queue.offer(8);
         queue.offer(7);
         queue.offer(6);
