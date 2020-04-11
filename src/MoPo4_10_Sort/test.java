@@ -11,7 +11,7 @@ public class test {
         //allSort.shellSort(n);
         //allSort.selectSort(n);
         //allSort.heapSort(n);
-        allSort.quickSort(n);
+        //allSort.quickSort(n);
         System.out.println(Arrays.toString(n));
     }
 }
