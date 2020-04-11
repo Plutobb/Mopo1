@@ -95,4 +95,41 @@ public class allSort {
             left = max * 2 + 1;
         }
     }
+    //快速排序;
+    public static void quickSort(int[] n){
+        quickSortInternal(n,0,n.length-1);
+    }
+    public static void quickSortInternal(int[] n,int left ,int right){
+        if (left >= right){
+            return;
+        }
+        int pivotIndex = partition(n,left,right);
+        //递归排序基准左侧;
+        quickSortInternal(n,left,pivotIndex-1);
+        //递归排序基准右侧;
+        quickSortInternal(n,pivotIndex+1,right);
+    }
+    public static int  partition(int[] n,int left,int right){
+        int i = left;
+        int j = right;
+        int pivot = n[left];//将第一个作为基准;
+        while (i < j){
+            //从区间两侧开始
+            //右侧找到比基准小的值;
+            while (i < j && n[j] >= pivot){
+                j--;
+            }
+            //左侧找到比基准大的值;
+            while (i < j && n[i] <= pivot){
+                i++;
+            }
+            //将两个值进行交换;
+            swap(n,i,j);
+        }
+        //最后将基准与左侧区间(比基准小的数)中最后一个元素交换;
+        //此时基准左侧数值都比基准小,右侧都比基准大;
+        swap(n,i,left);
+        //返回基准下标;
+        return i;
+    }
 }
