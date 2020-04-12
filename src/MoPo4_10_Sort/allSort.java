@@ -132,4 +132,42 @@ public class allSort {
         //返回基准下标;
         return i;
     }
+    //归并排序;
+    public static void mergeSort(int[] n){
+        mergeSortInternal(n,0,n.length);
+    }
+    public static void mergeSortInternal(int[] n,int low,int high){
+        if (low >= high-1){
+            return;
+        }
+        int mid = (low + high) / 2;
+        mergeSortInternal(n,low,mid);
+        mergeSortInternal(n,mid,high);
+        merge(n,low,mid,high);
+    }
+    public static void  merge(int[] n,int low,int mid,int high){
+        int i = low;
+        int j = mid;
+        int length = (high - low);
+        int[] extra = new int[length];
+        int k = 0;
+        while (i < mid && j < high){
+            if (n[i] <= n[j]){
+                extra[k++] = n[i++];
+            }else {
+                extra[k++] = n[j++];
+            }
+        }
+        //当一半组元素先被放入排序数组后,将剩下的元素直接放入排序数组中;
+        while (i < mid){
+            extra[k++] = n[i++];
+        }
+        while (j < high){
+            extra[k++] = n[j++];
+        }
+        //再将排序后的extra转移到原来的数组n中;
+        for (int t = 0; t < extra.length; t++) {
+            n[low + t] = extra[t];
+        }
+    }
 }

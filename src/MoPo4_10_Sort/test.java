@@ -12,6 +12,7 @@ public class test {
         allSort.selectSort(n);
         allSort.heapSort(n);
         allSort.quickSort(n);
+        allSort.mergeSort(n);
         System.out.println(Arrays.toString(n));
     }
 }
