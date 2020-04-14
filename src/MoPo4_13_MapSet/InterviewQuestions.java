@@ -1,9 +1,6 @@
 package MoPo4_13_MapSet;
 
-import java.util.HashMap;
-import java.util.HashSet;
-import java.util.Map;
-import java.util.Set;
+import java.util.*;
 
 public class InterviewQuestions {
     //题目1
@@ -72,5 +69,40 @@ public class InterviewQuestions {
             }
         }
         return ans;
+    }
+    //题目3
+    //  旧键盘
+    //  题目描述
+    //  旧键盘上坏了几个键，于是在敲一段文字的时候，对应的字符就不会出现。现在给出应该输入的
+    //  一段文字、以及实际被输入的文字，请你列出肯定坏掉的那些键。
+    //  输入描述:
+    //  输入在2行中分别给出应该输入的文字、以及实际被输入的文字。每段文字是不超过80个字符的串，
+    //  由字母A-Z（包括大、小写）、数字0-9、以及下划线“_”（代表空格）组成。题目保证2个字符串均非空。
+    //  输出描述:
+    //  按照发现顺序，在一行中输出坏掉的键。其中英文字母只输出大写，每个坏键只输出一次。题目保证至少有1个坏键。
+    //  输入例子:
+    //  7_This_is_a_test
+    //  _hs_s_a_es
+    //  输出例子:
+    //  7TI
+    public static void OldKeyboard(){
+        Scanner sc = new Scanner(System.in);
+        String should = sc.next();
+        String old = sc.next();
+        Set<Character> set = new HashSet<>();
+        should=should.toUpperCase();
+        old=old.toUpperCase();
+        char[] first = should.toCharArray();
+        char[] second = old.toCharArray();
+        for (char i : first){
+            set.add(i);
+        }
+        for (char j : second){
+            set.remove(j);
+        }
+        Iterator<Character> it = set.iterator();
+        while (it.hasNext()){
+            System.out.print(it.next());
+        }
     }
 }
