@@ -1,6 +1,8 @@
 package MoPo4_13_MapSet;
 
+import java.sql.Array;
 import java.util.*;
+import java.util.stream.Collectors;
 
 public class InterviewQuestions {
     //题目1
@@ -104,5 +106,30 @@ public class InterviewQuestions {
         while (it.hasNext()){
             System.out.print(it.next());
         }
+    }
+    //    给一非空的单词列表，返回前 k 个出现次数最多的单词。
+    //
+    //    返回的答案应该按单词出现频率由高到低排序。如果不同的单词有相同出现频率，按字母顺序排序。
+    public static List<String> topKFrequent(String[] words, int k) {
+        Map<String,Integer> map = new HashMap<>();
+        //遍历数组,记录下来每个单词出现的次数存放在value中;
+        for (String s : words){
+            Integer count = map.getOrDefault(s,0);
+            //getOrDefault方法是如果key对应的有value 就取出来,没有的话就用默认的defaultValue;
+            map.put(s,count+1);
+        }
+        //将得到的map.key放入到链表中;
+        ArrayList<String> arrayList = new ArrayList(map.keySet());
+        //然后对链表中的单词按出现次数排序;
+        //但是list自带的sort 默认是按照元素的自身大小进行升序排序(String 的字典序);
+        Collections.sort(arrayList, (o1, o2) -> {
+            int count1 = map.get(o1);
+            int count2 = map.get(o2);
+            if (count1 == count1){
+                return o1.compareTo(o2);
+            }
+            return count2 - count1;
+        });
+        return arrayList.subList(0,k);
     }
 }
