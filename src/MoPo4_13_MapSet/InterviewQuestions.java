@@ -125,7 +125,7 @@ public class InterviewQuestions {
         Collections.sort(arrayList, (o1, o2) -> {
             int count1 = map.get(o1);
             int count2 = map.get(o2);
-            if (count1 == count1){
+            if (count1 == count2){
                 return o1.compareTo(o2);
             }
             return count2 - count1;
