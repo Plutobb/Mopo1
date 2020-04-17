@@ -17,7 +17,6 @@ public class QueueQuestions {
         for(int i : stones){
             maxHeap.add(i);
         }
-        System.out.println(maxHeap);
         while (maxHeap.size() >= 2){
             int max1 = maxHeap.poll();
             int max2 = maxHeap.poll();
