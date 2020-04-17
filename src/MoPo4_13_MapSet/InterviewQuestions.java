@@ -132,4 +132,49 @@ public class InterviewQuestions {
         });
         return arrayList.subList(0,k);
     }
+//    给定两个以升序排列的整形数组 nums1 和 nums2, 以及一个整数 k。
+//
+//    定义一对值 (u,v)，其中第一个元素来自 nums1，第二个元素来自 nums2。
+//
+//    找到和最小的 k 对数字 (u1,v1), (u2,v2) ... (uk,vk)。
+    public static List<List<Integer>> kSmallestPairs(int[] nums1, int[] nums2, int k) {
+        //借助优先级队列完成比较;
+        //使用比较器;
+        PriorityQueue<List<Integer>> queue = new PriorityQueue<>(k, new Comparator<List<Integer>>() {
+            @Override
+            public int compare(List<Integer> o1, List<Integer> o2) {
+                int sum1 = 0 , sum2 = 0;
+                for (int i = 0; i <o1.size(); i++) {
+                    sum1 += o1.get(i);
+                }
+                for (int i = 0; i < o2.size(); i++) {
+                    sum2 += o2.get(i);
+                }
+                //当o1>o2 返回值 >0;
+                return sum2 - sum1;
+            }
+        });
+        for (int i = 0; i < nums1.length; i++) {
+            for (int j = 0; j < nums2.length; j++) {
+                List<Integer> list = new ArrayList<>();
+                list.add(nums1[i]);
+                list.add(nums2[j]);
+                if (queue.size() < k ){
+                    queue.add(list);
+                }else {
+                    //因为要找最小的前K组
+                    //当比较器返回值小于零时list小于队列中的元素
+                    if (queue.comparator().compare(list,queue.peek()) > 0){
+                        queue.remove();
+                        queue.add(list);
+                    }
+                }
+            }
+        }
+        List<List<Integer>> list = new ArrayList<>();
+        while (!queue.isEmpty()){
+            list.add(0,queue.remove());
+        }
+        return list;
+    }
 }
