@@ -1,4 +1,4 @@
-package MoPo3_29_Stack;
+package MoPo3_29_StackAndQueue;
 
 import java.util.ArrayList;
 

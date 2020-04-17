@@ -1,8 +1,4 @@
-package MoPo3_29_Stack;
-
-import java.util.ArrayList;
-import java.util.SplittableRandom;
-import java.util.Stack;
+package MoPo3_29_StackAndQueue;
 
 public class Test{
     public static void main(String[] args) {

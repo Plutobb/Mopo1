@@ -1,7 +1,5 @@
 package MoPo3_30_StackTest;
 
-import MoPo3_29_Stack.MyStack;
-
 import java.util.Stack;
 
 public class Test {
