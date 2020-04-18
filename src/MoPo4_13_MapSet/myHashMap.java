@@ -1,6 +1,6 @@
 package MoPo4_13_MapSet;
 
-public class HashMap {
+public class myHashMap {
     static class Node{
         public int key;
         public int value;
