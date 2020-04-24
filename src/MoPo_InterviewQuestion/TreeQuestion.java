@@ -81,6 +81,21 @@ public class TreeQuestion {
         root.right = buildTreeHelper(preorder, p_start + leftNum + 1, p_end, inorder, i_root_index + 1, i_end);
         return root;
     }
+//    你需要采用前序遍历的方式，将一个二叉树转换成一个由括号和整数组成的字符串。
+//    空节点则用一对空括号 "()" 表示。
+//    而且你需要省略所有不影响字符串与原始二叉树之间的一对一映射关系的空括号对。
+    public static String tree2str(TreeNode t) {
+        if (t == null){
+            return "";
+        }
+        if (t.left == null && t.right == null){
+            return t.val + "";
+        }
+        if (t.right == null){
+            return t.val + "("+tree2str(t.left)+")";
+        }
+        return t.val + "("+tree2str(t.left)+")"+"("+tree2str(t.right)+")";
+    }
     public static void main(String[] args) {
         TreeNode a = new TreeNode(0);
         TreeNode b = new TreeNode(1);
@@ -96,8 +111,8 @@ public class TreeQuestion {
         c.left = f;
         c.right = g;
         //层序遍历测试;
-        List<List<Integer>> out = levelOrder(a);
-        System.out.println(out);
-
+//        List<List<Integer>> out = levelOrder(a);
+//        System.out.println(out);
+        System.out.println(tree2str(a));
     }
 }
