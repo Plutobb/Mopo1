@@ -96,6 +96,40 @@ public class TreeQuestion {
         }
         return t.val + "("+tree2str(t.left)+")"+"("+tree2str(t.right)+")";
     }
+    //输入一棵二叉搜索树，将该二叉搜索树转换成一个排序的双向链表。
+    // 要求不能创建任何新的结点，只能调整树中结点指针的指向。
+    public static TreeNode Convert(TreeNode pRootOfTree) {
+        if (pRootOfTree == null){
+            return null;
+        }
+        //创建一个链表存放结果;
+        ArrayList<TreeNode> list = new ArrayList<>();
+        //二叉搜索树中序是有序的因此借助中序排序放入链表;
+        inOrder(list,pRootOfTree);
+        //实现链表的双向;
+        return twoWayList(list);
+    }
+    public static void inOrder(ArrayList<TreeNode> list,TreeNode root){
+        if (root != null){
+            inOrder(list,root.left);
+            list.add(root);
+            inOrder(list,root.right);
+        }
+    }
+    public static TreeNode twoWayList(ArrayList<TreeNode> list){
+        TreeNode head = list.get(0);
+        TreeNode cur = head;
+        for (int i = 1; i < list.size(); i++) {
+            TreeNode node = list.get(i);
+            //node 左边指向 cur
+            //cur 右边指向 node;
+            //实现双向;
+            cur.right = node;
+            node.left = cur;
+            cur = node;
+        }
+        return head;
+    }
     public static void main(String[] args) {
         TreeNode a = new TreeNode(0);
         TreeNode b = new TreeNode(1);
