@@ -153,6 +153,23 @@ public class TreeQuestion {
         }
         return head;
     }
+    //给定一个二叉树，原地将它展开为链表。
+    public static void flatten(TreeNode root) {
+        while (root != null){
+            if (root.left == null){
+                root = root.right;
+            }else {
+                TreeNode pre = root.left;
+                while (pre.right != null){
+                    pre = pre.right;
+                }
+                pre.right = root.right;
+                root.right = root.left;
+                root.left = null;
+                root = root.right;
+            }
+        }
+    }
     public static void main(String[] args) {
         TreeNode a = new TreeNode(0);
         TreeNode b = new TreeNode(1);
