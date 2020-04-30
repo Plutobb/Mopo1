@@ -2,6 +2,8 @@ package MoPo_InterviewQuestion;
 
 import java.util.HashMap;
 import java.util.HashSet;
+import java.util.LinkedList;
+import java.util.List;
 
 public class HashQuestions {
     //给定一个字符串，请你找出其中不含有重复字符的 最长子串 的长度。
@@ -34,5 +36,35 @@ public class HashQuestions {
             }
         }
         return -1;
+    }
+//    所有 DNA 都由一系列缩写为 A，C，G 和 T 的核苷酸组成，例如：“ACGAATTCCG”。在研究 DNA 时，识别 DNA 中的重复序列有时会对研究非常有帮助。
+//
+//    编写一个函数来查找 DNA 分子中所有出现超过一次的 10 个字母长的序列（子串）。
+    public static List<String> findRepeatedDnaSequences(String s) {
+        HashSet<String> set = new HashSet<>();
+        List<String> list = new LinkedList<>();
+        int i = 0, j = 10;
+        while (j <= s.length()){
+            String str = s.substring(i++,j++);
+            if (!set.contains(str)){
+                set.add(str);
+            }else {
+                if (list.isEmpty()){
+                    list.add(str);
+                }else {
+                    int same = 0;
+                    for (String value : list) {
+                        if (str.equals(value)) {
+                            same = 1;
+                            break;
+                        }
+                    }
+                    if (same == 0){
+                        list.add(str);
+                    }
+                }
+            }
+        }
+        return list;
     }
 }
