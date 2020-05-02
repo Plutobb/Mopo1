@@ -67,4 +67,32 @@ public class HashQuestions {
         }
         return list;
     }
+    //我们来定义一个函数 f(s)，其中传入参数 s 是一个非空字符串；
+    // 该函数的功能是统计 s  中（按字典序比较）最小字母的出现频次。
+    public int[] numSmallerByFrequency(String[] queries, String[] words) {
+        int[] output = new int[queries.length];
+        for (int i=0; i<queries.length; i++) {
+            int count = 0;
+            for (int j=0; j<words.length; j++) {
+                if (funF(queries[i]) < funF(words[j])) {
+                    count++;
+                }
+            }
+            output[i] = count;
+        }
+        return output;
+    }
+
+    public int funF(String str) {
+        int[] arr = new int[26];
+        for (int i=0; i<str.length(); i++) {
+            arr[str.charAt(i) - 'a']++;
+        }
+        for (int i=0; i<arr.length; i++) {
+            if (arr[i] != 0) {
+                return arr[i];
+            }
+        }
+        return 0;
+    }
 }
