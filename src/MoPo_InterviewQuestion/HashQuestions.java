@@ -82,7 +82,6 @@ public class HashQuestions {
         }
         return output;
     }
-
     public int funF(String str) {
         int[] arr = new int[26];
         for (int i=0; i<str.length(); i++) {
@@ -94,5 +93,38 @@ public class HashQuestions {
             }
         }
         return 0;
+    }
+    //判断一个 9x9 的数独是否有效。只需要根据以下规则，验证已经填入的数字是否有效即可。
+    //
+    //数字 1-9 在每一行只能出现一次。
+    //数字 1-9 在每一列只能出现一次。
+    //数字 1-9 在每一个以粗实线分隔的 3x3 宫内只能出现一次。
+    public static boolean isValidSudoku(char[][] board) {
+        HashMap<Integer,Integer>[] row = new HashMap[9];
+        HashMap<Integer,Integer>[] col = new HashMap[9];
+        HashMap<Integer,Integer>[] box = new HashMap[9];
+        for (int i = 0; i < 9; i++) {
+            row[i] = new HashMap<Integer, Integer>();
+            col[i] = new HashMap<Integer, Integer>();
+            box[i] = new HashMap<Integer, Integer>();
+        }
+        for (int i = 0; i < 9; i++) {
+            for (int j = 0; j < 9; j++) {
+                char num = board[i][j];
+                if (num != '.'){
+                    int n = (int) num;
+                    int box_index = (i / 3) * 3 + j / 3;//求出在3*3的方块中的位置(第几块中)
+                    //将数字放入对应的行,列,矩阵,对应的哈希表中;
+                    row[i].put(n,row[i].getOrDefault(n,0)+1);
+                    col[j].put(n,col[j].getOrDefault(n,0)+1);
+                    box[box_index].put(n,box[box_index].getOrDefault(n,0)+1);
+                    //判断是否存在出现两次的情况;
+                    if (row[i].get(n) > 1 || col[j].get(n) > 1|| box[box_index].get(n) > 1){
+                        return false;
+                    }
+                }
+            }
+        }
+        return true;
     }
 }
