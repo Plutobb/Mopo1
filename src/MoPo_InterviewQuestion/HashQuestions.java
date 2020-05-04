@@ -127,4 +127,41 @@ public class HashQuestions {
         }
         return true;
     }
+    //给定两个字符串 s 和 t，它们只包含小写字母。
+    //字符串 t 由字符串 s 随机重排，然后在随机位置添加一个字母。
+    //请找出在 t 中被添加的字母。
+    public static char findTheDifference(String s, String t) {
+        HashMap<Character,Integer> sMap = new HashMap<>();
+        HashMap<Character,Integer> tMap = new HashMap<>();
+        for (int i = 0; i < s.length(); i++) {
+            char a = s.charAt(i);
+            sMap.put(a,sMap.getOrDefault(a,0)+1);
+        }
+        for (int i = 0; i < t.length(); i++) {
+            char b = t.charAt(i);
+            tMap.put(b,tMap.getOrDefault(b,0)+1);
+        }
+        //sMap 长度等于 tMap 时说明加的字母以前出现过;
+        //不相等 说明是新出现的字母;
+        if (sMap.size() == tMap.size()){
+            for (Character a : sMap.keySet()){
+                if (!sMap.get(a).equals(tMap.get(a))){
+                    return a;
+                }
+            }
+        }else {
+            for (Character b : tMap.keySet()){
+                if (!sMap.containsKey(b)){
+                    return b;
+                }
+            }
+        }
+        return ' ';
+    }
+
+    public static void main(String[] args) {
+        String a = "abd";
+        String b = "abdd";
+        System.out.println(findTheDifference(a,b));
+    }
 }
