@@ -9,7 +9,7 @@ import java.sql.ResultSet;
 import java.sql.SQLException;
 
 public class TestJDBC {
-     private static void testInsert () throws SQLException {
+     private static void testInsert (String mysql) throws SQLException {
          //1.先创建一个datasource对象;
          DataSource dataSource = new MysqlDataSource();
          //2.设置datasource属性,为链接数据库做准备;
@@ -19,12 +19,12 @@ public class TestJDBC {
          //3.创建Connection对象,用来表示链接了一次数据库;
          Connection connection = (Connection) dataSource.getConnection();
          //4.拼装sql语句;
-         String sql = "insert into student values(?,?)";
+         String sql = mysql;
          // statement 用来辅助拼装 SQL 的, setXXX 的类型需要和数据库表的类型匹配.
          // ? 的下标从 1 开始计算
          PreparedStatement statement = connection.prepareStatement(sql);
-         statement.setInt(1,2);
-         statement.setString(2,"科比");
+//         statement.setInt(1,2);
+//         statement.setString(2,"科比");
          System.out.println(statement);
          //5.执行sql;
          int ret = statement.executeUpdate();
@@ -55,6 +55,8 @@ public class TestJDBC {
      }
 
     public static void main(String[] args) throws SQLException {
+         //每执行一次就插入一次;
+         //testInsert("insert into student values(3,\"欧文\")");
         testSelect();
     }
 }
