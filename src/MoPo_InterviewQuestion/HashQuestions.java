@@ -241,13 +241,41 @@ public class HashQuestions {
         }
         return true;
     }
+    //给定两个数组，编写一个函数来计算它们的交集。
+    public static int[] intersect(int[] nums1, int[] nums2) {
+        if (nums1.length > nums2.length){
+            return intersect(nums2,nums1);
+        }
+        HashMap<Integer,Integer> map1 = new HashMap<>();
+        HashMap<Integer,Integer> map2 = new HashMap<>();
+        int[] ans = new int[nums1.length];
+        for (int i = 0; i < nums1.length; i++) {
+            map1.put(nums1[i], map1.getOrDefault(nums1[i], 0) + 1);
+        }
+        for (int i = 0; i < nums2.length; i++) {
+            map2.put(nums2[i], map2.getOrDefault(nums2[i], 0) + 1);
+        }
+        int index = 0;
+        for(int num : map1.keySet()){
+            if (map2.containsKey(num)){
+                int time = Math.min(map1.get(num),map2.get(num))+index;
+                for (; index < time; index++) {
+                    ans[index] = num;
+                }
+            }
+        }
+        return Arrays.copyOfRange(ans,0,index);
+    }
     public static void main(String[] args) {
-        String a = "abb";
-        String b = "abc";
+//        String a = "abb";
+//        String b = "abc";
+        int[] x = {1,2,2,4};
+        int[] y = {1,2,2};
 //        System.out.println(findTheDifference(a,b));
 //        String paragraph = "Bob hit a ball, the hit BALL flew far after it was hit.";
 //        String[] ban ={"hit"};
 //        System.out.println(mostCommonWord(paragraph,ban));
 //        System.out.println(isIsomorphic(a,b));
+        System.out.println(Arrays.toString(intersect(x, y)));
     }
 }
