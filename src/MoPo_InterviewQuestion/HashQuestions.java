@@ -266,8 +266,32 @@ public class HashQuestions {
         }
         return Arrays.copyOfRange(ans,0,index);
     }
+    //给定一个字符串，找到它的第一个不重复的字符，并返回它的索引。如果不存在，则返回 -1。
+    public static int firstUniqChar(String s) {
+        HashMap<Character,Integer> map = new HashMap<>();
+        HashSet<Character> set = new HashSet<>();
+        for (int i = 0; i < s.length(); i++) {
+            if (map.containsKey(s.charAt(i))){
+                map.remove(s.charAt(i));
+                set.add(s.charAt(i));
+            }else {
+                if (!set.contains(s.charAt(i))) {
+                    map.put(s.charAt(i), i);
+                }
+            }
+        }
+        if (map.isEmpty()){
+            return -1;
+        }else {
+            int index = s.length();
+            for (char c : map.keySet()) {
+                index = Math.min(index, map.get(c));
+            }
+            return index;
+        }
+    }
     public static void main(String[] args) {
-//        String a = "abb";
+        String a = "ddc";
 //        String b = "abc";
         int[] x = {1,2,2,4};
         int[] y = {1,2,2};
@@ -276,6 +300,7 @@ public class HashQuestions {
 //        String[] ban ={"hit"};
 //        System.out.println(mostCommonWord(paragraph,ban));
 //        System.out.println(isIsomorphic(a,b));
-        System.out.println(Arrays.toString(intersect(x, y)));
+        //System.out.println(Arrays.toString(intersect(x, y)));
+        System.out.println(firstUniqChar(a));
     }
 }
