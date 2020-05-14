@@ -1,9 +1,6 @@
 package MoPo_InterviewQuestion;
 
-import sun.misc.Queue;
-
-import java.util.HashSet;
-import java.util.Stack;
+import java.util.*;
 
 public class StackQuestion {
     //编写一个 StockSpanner 类，它收集某些股票的每日报价，并返回该股票当日价格的跨度。
@@ -108,11 +105,64 @@ public class StackQuestion {
         }
         return String.valueOf(ans);
     }
+    //有家动物收容所只收留猫和狗，但有特殊的收养规则，收养人有两种收养方式，
+    // 第一种为直接收养所有动物中最早进入收容所的，第二种为选择收养的动物类型（猫或狗），
+    // 并收养该种动物中最早进入收容所的。
+    // 给定一个操作序列int[][2] ope(C++中为vector<vector<int>>)代表所有事件。
+    // 若第一个元素为1，则代表有动物进入收容所，第二个元素为动物的编号，正数代表狗，负数代表猫；
+    // 若第一个元素为2，则代表有人收养动物，
+    // 第二个元素若为0，则采取第一种收养方式，若为1，则指定收养狗，若为-1则指定收养猫。
+    // 请按顺序返回收养的序列。若出现不合法的操作，即没有可以符合领养要求的动物，则将这次领养操作忽略。
+    //测试样例：
+    //[[1,1],[1,-1],[2,0],[2,-1]]
+    //返回：[1,-1]
+    public static ArrayList<Integer> asylum(int[][] ope) {
+        ArrayList<Integer> ret = new ArrayList<Integer>();// 存放最终收养序列
+        ArrayList<Integer> animal = new ArrayList<Integer>();// 存放进入收容所的动物
+        int temp=0;
+        for (int i = 0; i < ope.length; i++) {
+            switch (ope[i][0]) {
+                // 有动物进入收容所
+                case 1:
+                    animal.add(ope[i][1]);
+                    break;
+                // 有人收养动物
+                case 2:
+                    // 第一种收养方式
+                    if (!animal.isEmpty()&&ope[i][1] == 0) {
+                        ret.add(animal.get(0));
+                        animal.remove(0);
+                    }
+                    // 收养狗
+                    else if (ope[i][1] == 1) {
+                        for(temp=0;temp<animal.size();temp++){
+                            if(animal.get(temp)>0){
+                                ret.add(animal.get(temp));
+                                animal.remove(temp);
+                                break;
+                            }
+                        }
+                    }
+                    // 收养猫
+                    else if(ope[i][1] == -1){
+                        for(temp=0;temp<animal.size();temp++){
+                            if(animal.get(temp)<0){
+                                ret.add(animal.get(temp));
+                                animal.remove(temp);
+                                break;
+                            }
+                        }
+                    }
+                    break;
+            }
+        }
+        return ret;
+    }
     public static void main(String[] args) {
 //        String[] a = {"2","3","+","3","*","3","-"};
-        int[] a = {1,2,3,4,5};
-        int[] b = {4,5,3,2,1};
-        System.out.println(IsPopOrder(a,b));
+//        int[] a = {1,2,3,4,5};
+//        int[] b = {4,5,3,2,1};
+//        System.out.println(IsPopOrder(a,b));
 //        System.out.println(evalRPN(a));
     }
 }
