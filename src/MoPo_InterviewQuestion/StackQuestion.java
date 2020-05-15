@@ -158,11 +158,42 @@ public class StackQuestion {
         }
         return ret;
     }
+    //约瑟夫问题是一个著名的趣题。这里我们稍稍修改一下规则。有n个人站成一列。
+    // 并从头到尾给他们编号，第一个人编号为1。
+    // 然后从头开始报数，第一轮依次报1，2，1，2...然后报到2的人出局。
+    // 接着第二轮再从上一轮最后一个报数的人开始依次报1，2，3，1，2，3...报到2，3的人出局。
+    // 以此类推直到剩下以后一个人。现在需要求的即是这个人的编号。
+    //给定一个int n，代表游戏的人数。请返回最后一个人的编号
+    public static int getResult(int n) {
+        LinkedList<Integer> people = new LinkedList<>();
+        for (int i = 1; i <= n; i++) {
+            people.add(i);
+        }
+        int count = 2;
+        while (people.size() > 1){
+            for (int i = 0; i < people.size(); i++) {
+                int num = i % count + 1;
+                if (num != 1){
+                    //这里直接删除会导致后面的下标出现错位;
+                    people.set(i,0);
+                }
+            }
+            count++;
+            //利用迭代器,把值为0的节点删掉;
+            people.removeIf(integer -> integer == 0);
+            //将最后一个放到链表头;
+            people.addFirst(people.getLast());
+            people.remove(people.size()-1);
+
+        }
+        return people.getFirst();
+    }
     public static void main(String[] args) {
 //        String[] a = {"2","3","+","3","*","3","-"};
 //        int[] a = {1,2,3,4,5};
 //        int[] b = {4,5,3,2,1};
 //        System.out.println(IsPopOrder(a,b));
 //        System.out.println(evalRPN(a));
+        System.out.println(getResult(5));
     }
 }
