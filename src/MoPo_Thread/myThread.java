@@ -53,8 +53,28 @@ public class myThread {
         double ms = (end - begin) * 1.0 /10000/10000;
         System.out.printf("串行:用时%f毫秒",ms);
     }
+    public static void threadJoin() throws InterruptedException {
+        Thread[] threads = new Thread[20];
+        for (int i = 0; i < 20; i++) {
+            final int j = i;
+            Thread t = new Thread(new Runnable() {
+                @Override
+                public void run() {
+                    System.out.println(j);
+                }
+            });
+            t.start();
+            threads[i] = t;
+        }
+        for (int i = 0; i < 20; i++) {
+            threads[i].join();
+        }
+    }
     public static void main(String[] args) throws InterruptedException {
-        concurrency();
-        serial();
+        //比较速度;
+//        concurrency();
+//        serial();
+        threadJoin();
+        System.out.println("main");
     }
 }
