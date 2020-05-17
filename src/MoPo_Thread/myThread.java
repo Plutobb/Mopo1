@@ -1,5 +1,7 @@
 package MoPo_Thread;
 
+import java.util.concurrent.atomic.AtomicInteger;
+
 public class myThread {
     //多线程;
     public static void firstBlood() {
@@ -70,11 +72,40 @@ public class myThread {
             threads[i].join();
         }
     }
+    public static void threadInterrupted() throws InterruptedException {
+            AtomicInteger i = new AtomicInteger();
+            Thread t = new Thread(()->{
+                try {
+                    while (!Thread.interrupted()){
+                        System.out.println(Thread.currentThread().getName());
+                        Thread.sleep(1000);
+                    }
+                } catch (InterruptedException e) {
+                    //这里抛出异常后会重置Interrupt为false;
+                    e.printStackTrace();
+                }
+            });
+            t.start();
+            Thread.sleep(3000);
+            t.interrupt();
+    }
+    public static void printInterrupted(){
+        Thread thread = new Thread(()->{
+            for (int i = 0; i < 10; i++) {
+                System.out.println(Thread.currentThread().isInterrupted());
+            }
+        });
+        thread.start();
+        thread.interrupt();
+    }
     public static void main(String[] args) throws InterruptedException {
         //比较速度;
 //        concurrency();
 //        serial();
-        threadJoin();
-        System.out.println("main");
+        //线程等待;
+//        threadJoin();
+//        System.out.println("main");
+        //threadInterrupted();
+       // printInterrupted();
     }
 }
