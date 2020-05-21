@@ -63,11 +63,38 @@ public class ThreadSafety {
         t2.start();
         t3.start();
     }
-    public static void main(String[] args) {
+    //volatile关键字;
+     static class RunThread implements Runnable {
+        private volatile boolean isRunning = true;
+
+        public boolean isRunning() {
+            return isRunning();
+        }
+        public void setIsRunning(Boolean isRunning){
+            this.isRunning = isRunning;
+        }
+        @Override
+        public void run() {
+            int i = 0;
+            System.out.println("进入run");
+            while (isRunning){
+                i++;
+            }
+            System.out.println(i);
+            System.out.println("退出run");
+        }
+    }
+    public static void main(String[] args) throws InterruptedException {
         //这里sum输出的值跟预想的不符合,涉及到了线程安全问题;
         //unSafetyThread();
         //使用synchronized对方法上锁;
         //thread_1();
-        saleTickets();
+        //saleTickets();
+        RunThread thread = new RunThread();
+        Thread t1 = new Thread(thread);
+        t1.start();
+        Thread.sleep(1);
+        thread.setIsRunning(false);
+        System.out.println("结束程序");
     }
 }
