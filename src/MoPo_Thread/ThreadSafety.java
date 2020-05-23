@@ -84,17 +84,37 @@ public class ThreadSafety {
             System.out.println("退出run");
         }
     }
+    //双重校验锁的单例模式;
+    //性能高.
+    static class Singleton{
+        private  Singleton(){};
+        //volatile关键字保证可见性;
+        private static volatile Singleton instance = null;
+        public static Singleton getInstance(){
+            //第一层不加锁,有利于第二批次进入的线程直接判断;
+            if (instance == null){
+                //第一批线程可能并发进入到下面代码;
+                synchronized (Singleton.class){
+                    //加锁保证线程安全;
+                    if (instance == null){
+                        instance = new Singleton();
+                    }
+                }
+            }
+            return instance;
+        }
+    }
     public static void main(String[] args) throws InterruptedException {
         //这里sum输出的值跟预想的不符合,涉及到了线程安全问题;
         //unSafetyThread();
         //使用synchronized对方法上锁;
         //thread_1();
         //saleTickets();
-        RunThread thread = new RunThread();
-        Thread t1 = new Thread(thread);
-        t1.start();
-        Thread.sleep(1);
-        thread.setIsRunning(false);
-        System.out.println("结束程序");
+//        RunThread thread = new RunThread();
+//        Thread t1 = new Thread(thread);
+//        t1.start();
+//        Thread.sleep(1);
+//        thread.setIsRunning(false);
+//        System.out.println("结束程序");
     }
 }
