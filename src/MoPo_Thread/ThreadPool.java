@@ -1,15 +1,24 @@
 package MoPo_Thread;
 
-import java.util.concurrent.ArrayBlockingQueue;
-import java.util.concurrent.ThreadFactory;
-import java.util.concurrent.ThreadPoolExecutor;
-import java.util.concurrent.TimeUnit;
+import java.util.concurrent.*;
 
 public class ThreadPool {
+
+    //四种Executor创建线程池的方法,不推荐使用;
+    //《阿里巴巴Java开发手册》中强制线程池不允许使用 Executors 去创建，
+    // 而是通过 new ThreadPoolExecutor 实例的方式，
+    // 这样的处理方式让写的同学更加明确线程池的运行规则，规避资源耗尽的风险。
+    private static ExecutorService FIXED_POOL = Executors.newFixedThreadPool(4);
+
+    private static ScheduledExecutorService SCHEDULED_POOL = Executors.newScheduledThreadPool(4);
+
+    public static void runFixedThreadPool(Runnable task){
+        FIXED_POOL.execute(task);
+    }
+
     public static void main(String[] args) {
         //线程池
         //通过送快递来理解线程池;
-
         //相当于创建一个快递公司;
         ThreadPoolExecutor pool = new ThreadPoolExecutor(
                 //公司快递员数量(正式工) -------线程数量;
