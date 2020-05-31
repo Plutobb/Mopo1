@@ -6,7 +6,7 @@ import java.io.*;
 import java.util.ArrayList;
 import java.util.List;
 
-public class testJava {
+public class testIO {
     @Test
     public void t1(){
         File f1 = new File("");
