@@ -39,6 +39,7 @@ public class oneDayOJ {
         String b = sc.nextLine();
         System.out.println(level(a,b));
     }
+    //----------------------------------------------------------------------------------------------------------
     public static int findKth(int[] a, int n, int K) {
         // write code here
         PriorityQueue<Integer> queue = new PriorityQueue(K);
@@ -59,7 +60,52 @@ public class oneDayOJ {
         int[] a = {1,2,5,3,2};
         System.out.println(findKth(a,5,3));
     }
-    public static void main(String[] args) {
+    // ---------------------------------------------------------------------------------------------------
+    //空瓶子换汽水问题；
+    public static void waterNum(int n){
+        int water = 0;
+        int emptyBottle = n;
+        int changeBottle = 0;
+        //换完不够换的瓶子 < 3；
+        int surplusBottle = 0;
+        //总共换来的汽水；
+        do {
+            changeBottle = emptyBottle / 3;
+            surplusBottle = emptyBottle % 3;
+            water += changeBottle;
+            emptyBottle = changeBottle + surplusBottle;
+        } while (emptyBottle >= 3);
+        if (emptyBottle == 2)
+            water++;
+        System.out.println(water);
 
+    }
+    public static void oj3(){
+        Scanner sc = new Scanner(System.in);
+        while (sc.hasNext()){
+            int n = sc.nextInt();
+            waterNum(n);
+        }
+    }
+    //---------------------------------------------------------------------------------------------------
+    //有一数组任意找两个数如果前面数大于后面则成为逆序对，求出数组逆序对个数；
+    public static int count(int[] A, int n) {
+        // write code here
+        int num = 0;
+        for (int i = 0; i < n-1; i++) {
+            for (int j = i+1; j < n; j++) {
+                if (A[i] > A[j]){
+                    num++;
+                }
+            }
+        }
+        return num;
+    }
+    public static void oj4(){
+        int[] a = {1,2,3,4,5,6,7,0};
+        System.out.println(count(a,8));
+    }
+    public static void main(String[] args) {
+        oj4();
     }
 }
