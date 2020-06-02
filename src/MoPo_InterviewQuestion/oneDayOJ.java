@@ -1,8 +1,5 @@
 package MoPo_InterviewQuestion;
 
-import org.junit.Test;
-
-import java.util.Collections;
 import java.util.PriorityQueue;
 import java.util.Scanner;
 
