@@ -105,7 +105,55 @@ public class oneDayOJ {
         int[] a = {1,2,3,4,5,6,7,0};
         System.out.println(count(a,8));
     }
+    //---------------------------------------------------------------------------------------------------
+    //读入一个字符串str，输出字符串中最长的数子串；
+    public static String maxNUmString(String str){
+        int begin = 0,end=0,max=0;
+        String ret = null;
+        Boolean isSameNumString = false;
+        for (int i = 0; i < str.length(); i++) {
+            if ((str.charAt(i) >= '0') && (str.charAt(i) <= '9')){
+                if (!isSameNumString) {
+                    begin = i;
+                    isSameNumString = true;
+                }
+                if ((i+1) == str.length() || ((str.charAt(i+1) < '0') || (str.charAt(i+1) > '9'))){
+                    end = i+1;
+                    if (end > begin) {
+                        isSameNumString = false;
+                        if ((end - begin) > max) {
+                            max = end - begin;
+                            ret = str.substring(begin, end);
+                        }
+                    }
+                }
+            }
+        }
+        return ret;
+    }
+    public static void oj5(){
+        Scanner sc = new Scanner(System.in);
+        String str = sc.nextLine();
+        System.out.println(maxNUmString(str));
+    }
+    //---------------------------------------------------------------------------------------------------
+    //给定一个字符串，设计算法判断括号是否合法；
+    public static boolean chkParenthesis(String A, int n) {
+        int left = 0,right = 0;
+        for (int i = 0; i < n; i++) {
+            if (A.charAt(i) == '(') left++;
+            else if (A.charAt(i) == ')') right++;
+            else return false;
+            if (left < right) return false;
+        }
+        return true;
+    }
+    public static void oj6(){
+        String a = "()a()()";
+        System.out.println(chkParenthesis(a,7));
+    }
+    //---------------------------------------------------------------------------------------------------
     public static void main(String[] args) {
-        oj4();
+
     }
 }
