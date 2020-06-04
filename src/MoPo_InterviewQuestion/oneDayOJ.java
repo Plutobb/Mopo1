@@ -1,5 +1,6 @@
 package MoPo_InterviewQuestion;
 
+import java.util.HashSet;
 import java.util.PriorityQueue;
 import java.util.Scanner;
 
@@ -151,6 +152,52 @@ public class oneDayOJ {
     public static void oj6(){
         String a = "()a()()";
         System.out.println(chkParenthesis(a,7));
+    }
+    //---------------------------------------------------------------------------------------------------
+    //购买n个水果，使用可以装6个和8个的袋子，必须装满，求最少需要用到的袋子数，如果装不满，返回-1；
+    public static int bagMinNum(int n){
+        //最多需要8量装的袋子数；
+        int max8 = n / 8;
+        int need6 = n % 8;
+        //当8量装袋子刚好够直接返回；
+        if (need6 == 0){
+            return max8;
+        }else {
+            for (int i = max8; i >= 0; i--) {
+                need6 = (n - i * 8) / 6;
+                if ((n - i * 8) % 6 == 0){
+                    return i + need6;
+                }
+            }
+            return -1;
+        }
+    }
+    public static void oj7(){
+        Scanner sc =new Scanner(System.in);
+        int n = sc.nextInt();
+        System.out.println(bagMinNum(n));
+    }
+    //---------------------------------------------------------------------------------------------------
+    //给两个字符串，删除第一个中含有第二个字符串中的所有字符；
+    public static String deleteChar(String a,String b){
+        StringBuilder aBuffer = new StringBuilder(a);
+        HashSet<Character> bChar = new HashSet<>();
+        for (Character character : b.toCharArray()){
+            bChar.add(character);
+        }
+        for (int i = 0; i < aBuffer.length(); i++) {
+            if (bChar.contains(aBuffer.charAt(i))){
+                aBuffer.deleteCharAt(i);
+                i--;
+            }
+        }
+        return aBuffer.toString();
+    }
+    public static void oj8(){
+        Scanner sc = new Scanner(System.in);
+        String a = sc.nextLine();
+        String b = sc.nextLine();
+        System.out.println(deleteChar(a,b));
     }
     //---------------------------------------------------------------------------------------------------
     public static void main(String[] args) {
