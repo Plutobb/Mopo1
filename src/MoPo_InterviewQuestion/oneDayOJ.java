@@ -200,6 +200,9 @@ public class oneDayOJ {
         System.out.println(deleteChar(a,b));
     }
     //---------------------------------------------------------------------------------------------------
+    public static void oj9(){
+
+    }
     public static void main(String[] args) {
 
     }
