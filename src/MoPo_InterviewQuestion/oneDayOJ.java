@@ -3,6 +3,7 @@ package MoPo_InterviewQuestion;
 import java.util.HashSet;
 import java.util.PriorityQueue;
 import java.util.Scanner;
+import java.util.Stack;
 
 public class oneDayOJ {
     public static Boolean huiWen(String c){
@@ -200,8 +201,43 @@ public class oneDayOJ {
         System.out.println(deleteChar(a,b));
     }
     //---------------------------------------------------------------------------------------------------
+    //神奇的口袋问题,递归法;
+    private static int[] a;
+    public static int bag40(int n,int capacity){
+        if (capacity == 0) return 1;
+        if (n <= 0) return 0;
+        //物品放不放如分别走两个方法;
+        return bag40(n-1,capacity) + bag40(n-1,capacity - a[n-1]);
+    }
     public static void oj9(){
+        Scanner sc = new Scanner(System.in);
+        int n = sc.nextInt();
+        a = new int[n];
+        for (int i = 0; i < n; i++) {
+            a[i] = sc.nextInt();
+        }
+        System.out.println(bag40(n,40));
+    }
+    //---------------------------------------------------------------------------------------------------
+    //两个栈实现队列;
+    //stack1作为出口;
+    Stack<Integer> stack1 = new Stack<Integer>();
+    //stack2作为入口;
+    Stack<Integer> stack2 = new Stack<Integer>();
 
+    public void push(int node) {
+        stack2.push(node);
+    }
+
+    public int pop() {
+        while (!stack2.isEmpty()){
+            stack1.push(stack2.pop());
+        }
+        int ret = stack1.pop();
+        while (!stack1.isEmpty()){
+            stack2.push(stack1.pop());
+        }
+        return ret;
     }
     public static void main(String[] args) {
 
