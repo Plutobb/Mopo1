@@ -1,9 +1,6 @@
 package MoPo_InterviewQuestion;
 
-import java.util.HashSet;
-import java.util.PriorityQueue;
-import java.util.Scanner;
-import java.util.Stack;
+import java.util.*;
 
 public class oneDayOJ {
     public static Boolean huiWen(String c){
@@ -228,7 +225,6 @@ public class oneDayOJ {
     public void push(int node) {
         stack2.push(node);
     }
-
     public int pop() {
         while (!stack2.isEmpty()){
             stack1.push(stack2.pop());
@@ -239,7 +235,64 @@ public class oneDayOJ {
         }
         return ret;
     }
+    public static void oj10(){
+    }
+    //---------------------------------------------------------------------------------------------------
+    //计算糖果数量；
+    public static void tangGuoNum(int a,int b,int c,int d){
+        // a 代表 A-B；
+        // b 代表 B-C；
+        // c 代表 A+B；
+        // d 代表 B+C；
+        double A = (a+c)/2.0;
+        double B = (b+d)/2.0;
+        double C = (d-b)/2.0;
+        if ((int)A == A && A >= 0){
+            if ((int)B == B && B >= 0){
+                if ((int) C == C && C >= 0){
+                    System.out.print((int)A+" ");
+                    System.out.print((int)B+" ");
+                    System.out.print((int)C);
+                    return;
+                }
+            }
+        }
+        System.out.print("No");
+    }
+    public static void oj11(){
+        Scanner sc = new Scanner(System.in);
+        int a,b,c,d;
+        a = sc.nextInt();
+        b = sc.nextInt();
+        c = sc.nextInt();
+        d = sc.nextInt();
+        tangGuoNum(a,b,c,d);
+    }
+    //---------------------------------------------------------------------------------------------------
+    //找出出现次数大于等于n/2的数；
+    public static void findNum(int[] a,int size){
+        HashMap<Integer,Integer> map = new HashMap<>();
+        for (int i = 0;i < size;i++) {
+            int value = a[i];
+            if (!map.containsKey(value)) {
+                map.put(value, map.getOrDefault(value, 0) + 1);
+            } else {
+                map.put(value, map.get(value) + 1);
+            }
+        }
+        for (int num : map.keySet()){
+            if (map.get(num) >= size / 2){
+                System.out.println(num);
+            }
+        }
+    }
     public static void main(String[] args) {
-
+        Scanner sc = new Scanner(System.in);
+        int[] a = new int[100];
+        int size = 0;
+        while (sc.hasNextInt()){
+            a[size++] = sc.nextInt();
+        }
+        findNum(a,size);
     }
 }
