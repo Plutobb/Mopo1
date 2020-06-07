@@ -31,6 +31,12 @@ public class test {
             }
         }
         System.out.println(dp[n][40]);
+        for (int i = 0; i <= n; i++) {
+            for (int j = 0; j <= 40; j++) {
+                System.out.print(dp[i][j]);
+            }
+            System.out.println();
+        }
     }
 
     public static void main(String[] args) {
