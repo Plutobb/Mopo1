@@ -274,11 +274,11 @@ public class oneDayOJ {
         HashMap<Integer,Integer> map = new HashMap<>();
         for (int i = 0;i < size;i++) {
             int value = a[i];
-            if (!map.containsKey(value)) {
+            //if (!map.containsKey(value)) {
                 map.put(value, map.getOrDefault(value, 0) + 1);
-            } else {
-                map.put(value, map.get(value) + 1);
-            }
+//            } else {
+//                map.put(value, map.get(value) + 1);
+//            }
         }
         for (int num : map.keySet()){
             if (map.get(num) >= size / 2){
