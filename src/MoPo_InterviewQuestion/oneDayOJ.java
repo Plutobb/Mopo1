@@ -286,7 +286,7 @@ public class oneDayOJ {
             }
         }
     }
-    public static void main(String[] args) {
+    public static void oj12(){
         Scanner sc = new Scanner(System.in);
         int[] a = new int[100];
         int size = 0;
@@ -294,5 +294,61 @@ public class oneDayOJ {
             a[size++] = sc.nextInt();
         }
         findNum(a,size);
+    }
+    //---------------------------------------------------------------------------------------------------
+    //不要二,在网格W*H的盒子中,放物品每两个物品间欧几里得距离不能等于二;求最大能放的物品数;
+    public static int noTwo(int h,int w){
+        int[][] arr = new int[h][w];
+        int maxNum = 0;
+        for (int i = 0; i < h; i++) {
+            for (int j = 0; j < w; j++) {
+                int value = arr[i][j];
+                if (value == 0){
+                    maxNum++;
+                    if (j + 2 < w){
+                        arr[i][j+2] = 1;
+                    }
+                    if (i + 2 < h){
+                        arr[i+2][j] = 1;
+                    }
+                }
+            }
+        }
+        return maxNum;
+    }
+    public static void oj13(){
+        Scanner sc = new Scanner(System.in);
+        int h = sc.nextInt();
+        int w = sc.nextInt();
+        System.out.println(noTwo(h,w));
+    }
+    //---------------------------------------------------------------------------------------------------
+    //最小公倍数;
+    public static int minGongBei(int a,int b){
+        //求最小公倍数需要先找到最大公约数;
+        //辗转相减法求出最大公约数;
+       int maxGongBei = maxGongBei(a,b);
+       return a * b / maxGongBei;
+    }
+    public static int maxGongBei(int a,int b){
+        if (a != b) {
+            while (a != b) {
+                if (a > b) {
+                    a = a - b;
+                } else {
+                    b = b - a;
+                }
+            }
+        }
+        return a;
+    }
+    public static void oj14(){
+        Scanner sc = new Scanner(System.in);
+        int a = sc.nextInt();
+        int b = sc.nextInt();
+        System.out.println(minGongBei(a,b));
+    }
+    public static void main(String[] args) {
+
     }
 }
