@@ -348,6 +348,7 @@ public class oneDayOJ {
         int b = sc.nextInt();
         System.out.println(minGongBei(a,b));
     }
+    //---------------------------------------------------------------------------------------------------
     public static void main(String[] args) {
 
     }
