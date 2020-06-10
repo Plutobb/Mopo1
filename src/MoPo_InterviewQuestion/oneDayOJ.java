@@ -1,6 +1,7 @@
 package MoPo_InterviewQuestion;
 
 import java.util.*;
+import java.util.Comparator;
 
 public class oneDayOJ {
     public static Boolean huiWen(String c){
@@ -373,8 +374,14 @@ public class oneDayOJ {
     }
     //---------------------------------------------------------------------------------------------------
     //n个数中最小的k个,按升序输出;
-    public static void minKNum(int[] a,int k){
-        Arrays.sort(a);
+    public static void minKNum(Integer[] a, int k){
+        //这里测试比较器,删除比较器结果是升序;
+        Arrays.sort(a,new Comparator<Integer>(){
+            @Override
+            public int compare(Integer o1, Integer o2) {
+                return o2 - o1;
+            }
+        });
         for (int i = 0; i < k; i++) {
             System.out.print(a[i]+" ");
         }
@@ -385,14 +392,14 @@ public class oneDayOJ {
         while (sc.hasNextInt()){
             list.add(sc.nextInt());
         }
-        int[] a = new int[list.size()-1];
+        Integer[] a = new Integer[list.size()-1];
         int k = list.get(list.size()-1);
         for (int i = 0; i < list.size()-1; i++) {
             a[i] = list.get(i);
         }
         minKNum(a,k);
     }
+    //---------------------------------------------------------------------------------------------------
     public static void main(String[] args) {
-
     }
 }
