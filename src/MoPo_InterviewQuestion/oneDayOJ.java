@@ -349,6 +349,49 @@ public class oneDayOJ {
         System.out.println(minGongBei(a,b));
     }
     //---------------------------------------------------------------------------------------------------
+    //输入n,代表数组有n个数,每隔两个删除一个,循环删除,直到剩下最后一个,返回下标;
+    public static int endIndex(int n){
+        List<Integer> list = new ArrayList<>();
+        for (int i = 0; i < n; i++) {
+            list.add(i);
+        }
+        int index = 0;
+        while (list.size() > 1){
+            index =(index + 2) % list.size();
+            list.remove(index);
+        }
+        return list.get(0);
+    }
+    public static void oj15(){
+        Scanner sc = new Scanner(System.in);
+        int n;
+        while (sc.hasNextInt()){
+            n = sc.nextInt();
+            if (n > 1000) n = 1000;
+            System.out.println(endIndex(n));
+        }
+    }
+    //---------------------------------------------------------------------------------------------------
+    //n个数中最小的k个,按升序输出;
+    public static void minKNum(int[] a,int k){
+        Arrays.sort(a);
+        for (int i = 0; i < k; i++) {
+            System.out.print(a[i]+" ");
+        }
+    }
+    public static void oj16(){
+        Scanner sc = new Scanner(System.in);
+        List<Integer> list = new ArrayList<>();
+        while (sc.hasNextInt()){
+            list.add(sc.nextInt());
+        }
+        int[] a = new int[list.size()-1];
+        int k = list.get(list.size()-1);
+        for (int i = 0; i < list.size()-1; i++) {
+            a[i] = list.get(i);
+        }
+        minKNum(a,k);
+    }
     public static void main(String[] args) {
 
     }
