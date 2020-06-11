@@ -400,6 +400,43 @@ public class oneDayOJ {
         minKNum(a,k);
     }
     //---------------------------------------------------------------------------------------------------
+    //给定一个n,求出最小距离到斐波那契数;
+    public static int changeToFibonacci(int n){
+        int f1 = 0;
+        int f2 = 1;
+        while (f2 < n){
+            int tmp = f2;
+            f2 = f1 + f2;
+            f1 = tmp;
+        }
+        int minStep = Math.min(f2-n,n-f1);
+        return minStep;
+    }
+    public static void oj17(){
+        Scanner sc = new Scanner(System.in);
+        int n =sc.nextInt();
+        System.out.println(changeToFibonacci(n));
+    }
+    //---------------------------------------------------------------------------------------------------
+    //机器人走网格,X*Y的网格,每次只能往右走或者往下走,求出走路的方法数;
+    public static int countWays(int x, int y) {
+        // write code here
+        //退出递归的条件;
+        if (x==1 && y==1){
+            //符合题目
+            return 1;
+        }
+        if (x < 1||y < 1){
+            //越界返回0
+            return 0;
+        }
+        //x-1,代表往右走,y-1代表往下走,这里运用递归所以是反向的;
+        return countWays(x-1,y)+countWays(x,y-1);
+    }
+    public static void oj18(){
+        System.out.println(countWays(2,2));
+    }
     public static void main(String[] args) {
+
     }
 }
