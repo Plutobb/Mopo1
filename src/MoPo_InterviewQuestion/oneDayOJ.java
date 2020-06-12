@@ -1,7 +1,6 @@
 package MoPo_InterviewQuestion;
 
 import java.util.*;
-import java.util.Comparator;
 
 public class oneDayOJ {
     public static Boolean huiWen(String c){
@@ -435,6 +434,47 @@ public class oneDayOJ {
     }
     public static void oj18(){
         System.out.println(countWays(2,2));
+    }
+    //---------------------------------------------------------------------------------------------------
+    //给一个长度不大于1000的正整数,输出每个数字出现的次数;
+    //发现使用int会溢出,因此直接使用String来表示数字;
+    public static void numTimes(String n){
+        HashMap<Character,Integer> map = new HashMap<>();
+        List<Integer> list = new LinkedList<>();
+        for (int i = 0; i < n.length(); i++) {
+            Character value = n.charAt(i);
+            map.put(value,map.getOrDefault(value,0)+1);
+        }
+        //hashmap输出自动按key升序排列;
+        for (char ch : map.keySet()){
+            System.out.println(ch+":"+map.get(ch));
+        }
+    }
+    public static void oj19(){
+        Scanner sc = new Scanner(System.in);
+        String n = sc.next();
+        numTimes(n);
+    }
+    //---------------------------------------------------------------------------------------------------
+    //根据数组A构建数组B
+    //这道题相对简单,排除其中一个乘数,不使用除法;
+    public static int[] multiply(int[] A) {
+        int[] b = new int[A.length];
+        for (int i = 0; i < b.length; i++) {
+            int end = 1;
+            for (int j = 0; j < A.length; j++) {
+                if (i == j){
+                    continue;
+                }
+                end = end * A[j];
+            }
+            b[i] = end;
+        }
+        return b;
+    }
+    public static void oj20(){
+        int[] a ={1,2,3,4,5};
+        System.out.println(Arrays.toString(multiply(a)));
     }
     public static void main(String[] args) {
 
