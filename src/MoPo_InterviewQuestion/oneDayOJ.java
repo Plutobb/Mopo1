@@ -476,6 +476,45 @@ public class oneDayOJ {
         int[] a ={1,2,3,4,5};
         System.out.println(Arrays.toString(multiply(a)));
     }
+    //---------------------------------------------------------------------------------------------------
+    //无中间变量实现数字交换;
+    public static int[] exchangeAB(int[] AB) {
+        // write code here
+        AB[0] = AB[0]+AB[1];
+        AB[1] = AB[0]-AB[1];
+        AB[0] = AB[0]-AB[1];
+        return AB;
+    }
+    public static void oj21(){
+        int[] AB = {1,2};
+        exchangeAB(AB);
+    }
+    //---------------------------------------------------------------------------------------------------
+    //格雷码
+    public static String[] getGray(int n) {
+        List<String> list = new LinkedList<>();
+        list = getGrayHelp(n,"",list,true);
+        return list.toArray(new String[0]);
+    }
+    public static List<String> getGrayHelp(int n,String str,List<String> list,Boolean left){
+        if (n == 0){
+            list.add(str);
+            return list;
+        }else {
+            if (left) {
+                //保证对称,当为左子树字符串+ 0 1, 右子树 + 1 0;
+                getGrayHelp(n - 1, str + "0", list,true);
+                getGrayHelp(n - 1, str + "1", list,false);
+            }else {
+                getGrayHelp(n - 1, str + "1", list,true);
+                getGrayHelp(n - 1, str + "0", list,false);
+            }
+        }
+        return list;
+    }
+    public static void oj22(){
+        System.out.println(Arrays.toString(getGray(3)));
+    }
     public static void main(String[] args) {
 
     }
