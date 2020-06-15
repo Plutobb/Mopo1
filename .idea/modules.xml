@@ -3,6 +3,8 @@
   <component name="ProjectModuleManager">
     <modules>
       <module fileurl="file://$PROJECT_DIR$/Mopo.iml" filepath="$PROJECT_DIR$/Mopo.iml" />
+      <module fileurl="file://$PROJECT_DIR$/../Project_IDEA/servlet_bolg/blog/blog.iml" filepath="$PROJECT_DIR$/../Project_IDEA/servlet_bolg/blog/blog.iml" />
+      <module fileurl="file://$PROJECT_DIR$/../Project_IDEA/maven_Test/fristWeb.iml" filepath="$PROJECT_DIR$/../Project_IDEA/maven_Test/fristWeb.iml" />
     </modules>
   </component>
 </project>
