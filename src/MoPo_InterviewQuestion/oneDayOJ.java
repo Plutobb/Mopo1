@@ -515,6 +515,68 @@ public class oneDayOJ {
     public static void oj22(){
         System.out.println(Arrays.toString(getGray(3)));
     }
+    //---------------------------------------------------------------------------------------------------
+    //给定若干个数,组成最小的数;
+    public static String minNum(int[] arr){
+        Arrays.sort(arr);
+        if (arr[0] == 0) {
+            for (int i = 0; i < arr.length; i++) {
+                if (arr[i] != 0) {
+                    arr[0] = arr[i];
+                    arr[i] = 0;
+                    break;
+                }
+            }
+        }
+        StringBuilder str = new StringBuilder();
+        for (int value : arr) {
+            str.append(value);
+        }
+        return str.toString();
+    }
+    public static void oj23(){
+        Scanner sc = new Scanner(System.in);
+        int[] numTimes = new int[10];
+        int i = 0;
+        int length = 0;
+        while (sc.hasNextInt()){
+            numTimes[i++] = sc.nextInt();
+        }
+        for (int num : numTimes){
+            length += num;
+        }
+        int[] arr = new int[length];
+        int index = 0;
+        int nextIndex = 0;
+        for (int j = 0; j < numTimes.length; j++) {
+            nextIndex += numTimes[j];
+            for (; index < nextIndex; index++){
+                arr[index] = j;
+            }
+        }
+        System.out.println(minNum(arr));
+    }
+    //---------------------------------------------------------------------------------------------------
+    //任意一个数的三次方一定是n个奇数的和;
+    public static String jiShuZuHe(int n){
+        int first = (n*n) - n + 1;
+        int[] zuHe = new int[n];
+        for (int i = 0; i < n; i++) {
+            zuHe[i] = first + 2 * i;
+        }
+        String str =""+first;
+        for (int i = 1; i < n; i++) {
+            str = str + "+" + zuHe[i];
+        }
+        return str;
+    }
+    public static void oj24(){
+        Scanner sc = new Scanner(System.in);
+        while (sc.hasNextInt()) {
+            int n = sc.nextInt();
+            System.out.println(jiShuZuHe(n));
+        }
+    }
     public static void main(String[] args) {
 
     }
