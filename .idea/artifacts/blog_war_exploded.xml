@@ -1,6 +1,6 @@
 <component name="ArtifactManager">
   <artifact type="exploded-war" name="blog:war exploded">
-    <output-path>$PROJECT_DIR$/../Project_IDEA/servlet_bolg/blog/target/blogdemo</output-path>
+    <output-path>$PROJECT_DIR$/../Project_IDEA/servlet_bolg/blog/target/blog</output-path>
     <properties id="maven-jee-properties">
       <options>
         <exploded>true</exploded>
@@ -26,7 +26,7 @@
         </element>
       </element>
       <element id="directory" name="META-INF">
-        <element id="file-copy" path="$PROJECT_DIR$/../Project_IDEA/servlet_bolg/blog/target/blogdemo/META-INF/MANIFEST.MF" />
+        <element id="file-copy" path="$PROJECT_DIR$/../Project_IDEA/servlet_bolg/blog/target/blog/META-INF/MANIFEST.MF" />
       </element>
       <element id="javaee-facet-resources" facet="blog/web/Web" />
     </root>
