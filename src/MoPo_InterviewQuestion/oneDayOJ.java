@@ -577,7 +577,49 @@ public class oneDayOJ {
             System.out.println(jiShuZuHe(n));
         }
     }
+    //---------------------------------------------------------------------------------------------------
+    //另类加法;
+    public static int addAB(int A, int B) {
+        // write code here
+        if (B == 0){
+            return A;
+        }else {
+            int a = A ^ B;
+            int b = (A & B) << 1;
+            return addAB(a,b);
+        }
+    }
+    public static void oj25() {
+        addAB(1,2);
+    }
+    //---------------------------------------------------------------------------------------------------
+    //小易找贝壳;
+    private static final long MAX_STEP = 100_000;
+    private static final long BeiKeIndex = 1_000_000_007;
+    public static int findBeiKe(long x,int step){
+        //4 * x +3 相当于 2 * x+1 运算2次;
+        //8 * x +7 相当于 2 * x+1 运算3次;
+        //这里step按 2*x+1 来算的话最多就是 300000步;
+        while (x != 0 && step <= 3*MAX_STEP){
+            x = (2 * x + 1) % BeiKeIndex;
+            step++;
+        }
+        step = (step + 2) / 3;
+        if (step <= MAX_STEP){
+            return step;
+        }else {
+            return -1;
+        }
+    }
+    public static void oj26() {
+        Scanner sc = new Scanner(System.in);
+        while (sc.hasNextInt()){
+            long n = sc.nextInt();
+            System.out.println(findBeiKe(n,0));
+        }
+    }
     public static void main(String[] args) {
 
     }
 }
+
