@@ -618,6 +618,72 @@ public class oneDayOJ {
             System.out.println(findBeiKe(n,0));
         }
     }
+    //---------------------------------------------------------------------------------------------------
+    //洗牌;
+    public static void xiPai(int[] pai,int k){
+        int[] newPai = new int[pai.length];
+        while (k > 0){
+            int left = pai.length/2 - 1;
+            int right = pai.length - 1;
+            int index = newPai.length - 1;
+            while (index >= 0){
+                newPai[index--] = pai[right--];
+                newPai[index--] = pai[left--];
+            }
+            k--;
+            //将洗完的牌顺序赋值给pai数组;
+            System.arraycopy(newPai, 0, pai, 0, newPai.length);
+        }
+        System.out.print(newPai[0]);
+        for (int i = 1; i < newPai.length; i++) {
+            System.out.print(" "+newPai[i]);
+        }
+    }
+    public static void oj27() {
+        Scanner sc = new Scanner(System.in);
+        while (sc.hasNextInt()){
+            int zuShu = sc.nextInt();
+            while (zuShu > 0){
+                int n = sc.nextInt();
+                int k = sc.nextInt();
+                int[] pai = new int[n*2];
+                for (int i = 0; i < n*2; i++) {
+                    pai[i] = sc.nextInt();
+                }
+                xiPai(pai,k);
+                if (zuShu != 1){
+                    System.out.println();
+                }
+                zuShu--;
+            }
+        }
+    }
+    //---------------------------------------------------------------------------------------------------
+    //统计同成绩学生人数;
+    public static void tongJiCJi(int[] grade,int need){
+        int num = 0;
+        for (int value : grade){
+            if (value == need){
+                num++;
+            }
+        }
+        System.out.println(num);
+    }
+    public static void oj28(){
+        Scanner sc = new Scanner(System.in);
+        while (sc.hasNextInt()){
+            int total = sc.nextInt();
+            if (total == 0){
+                break;
+            }
+            int[] grade = new int[total];
+            for (int i = 0; i < total; i++) {
+                grade[i] = sc.nextInt();
+            }
+            int need = sc.nextInt();
+            tongJiCJi(grade,need);
+        }
+    }
     public static void main(String[] args) {
 
     }
