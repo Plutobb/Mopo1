@@ -684,6 +684,71 @@ public class oneDayOJ {
             tongJiCJi(grade,need);
         }
     }
+    //---------------------------------------------------------------------------------------------------
+    //***********火车出站序列;******************************
+    public static void chuZhan(int[] jinZhan,int n){
+        Stack<Integer> ans = new Stack<>();
+        Queue<Integer> jin = new LinkedList<>();
+        Stack<Integer> chu = new Stack<>();
+        for (int num : jinZhan){
+            jin.add(num);
+        }
+        for (int i = 0; i < n; i++) {
+            for (int j = 0; j < i; j++) {
+                chu.push(jin.poll());
+            }
+            System.out.println(jin);
+            System.out.println(chu);
+            System.out.println("-----------");
+        }
+    }
+    public static void oj29(){
+    }
+    //---------------------------------------------------------------------------------------------------
+    //镜像二叉树;
+    private static class TreeNode {
+        int val = 0;
+        TreeNode left = null;
+        TreeNode right = null;
+
+        public TreeNode(int val) {
+            this.val = val;
+
+        }
+    }
+    public static void Mirror(TreeNode root) {
+        if (root == null){
+            return;
+        }
+        if (root.left == null && root.right == null){
+            return;
+        }
+        TreeNode tmp = root.left;
+        root.left =root.right;
+        root.right = tmp;
+        if (root.left != null){
+            Mirror(root.left);
+        }
+        if (root.right != null){
+            Mirror(root.right);
+        }
+    }
+    public static void oj30(){
+        TreeNode a = new TreeNode(8);
+        TreeNode b = new TreeNode(6);
+        TreeNode c = new TreeNode(10);
+        TreeNode d = new TreeNode(5);
+        TreeNode e = new TreeNode(7);
+        TreeNode f = new TreeNode(9);
+        TreeNode g = new TreeNode(11);
+        a.left = b;
+        a.right = c;
+        b.left = d;
+        b.right = e;
+        c.left = f;
+        c.right = g;
+        Mirror(a);
+    }
     public static void main(String[] args) {
 
     }
