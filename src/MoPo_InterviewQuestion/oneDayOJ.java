@@ -777,6 +777,7 @@ public class oneDayOJ {
             jiShuNum(n,arr);
         }
     }
+    //---------------------------------------------------------------------------------------------------
     //找出比数组值小的数下标,左右最近的第一个,没有返回-1;
     public static void minIndex(int[] arr){
         for (int i = 0; i < arr.length; i++) {
@@ -807,6 +808,50 @@ public class oneDayOJ {
             }
             minIndex(arr);
         }
+    }
+    //---------------------------------------------------------------------------------------------------
+    //基因序列;
+    public static void jiYinCG(StringBuffer arr,int n){
+        String ans = arr.substring(0,n);
+        float cg_Ratio = -1;
+        for (int i = 0; i < arr.length() - n; i++) {
+            String test = arr.substring(i,i+n);
+            int cgNum = 0;
+            for (char ch : test.toCharArray()) {
+                if (ch == 'G' || ch == 'C') {
+                    cgNum++;
+                }
+            }
+            if ((float)cgNum / n > cg_Ratio){
+                ans = test;
+                cg_Ratio = (float) cgNum / n;
+            }
+        }
+        System.out.println(ans);
+    }
+    public static void oj33(){
+        Scanner sc = new Scanner(System.in);
+        StringBuffer arr = new StringBuffer();
+        while (sc.hasNext() ){
+            arr.append(sc.next());
+            int n = sc.nextInt();
+            jiYinCG(arr,n);
+        }
+    }
+    //---------------------------------------------------------------------------------------------------
+    //换钱计划;
+    public static void huanQian(){
+        System.out.print(10 * 30+" ");
+        int cent = 1;
+        int sum = 0;
+        for (int i = 0; i < 30; i++) {
+            sum += cent;
+            cent = cent * 2;
+        }
+        System.out.print(sum);
+    }
+    public static void oj34(){
+        huanQian();
     }
     public static void main(String[] args) {
 
