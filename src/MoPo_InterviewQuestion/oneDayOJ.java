@@ -749,6 +749,65 @@ public class oneDayOJ {
         c.right = g;
         Mirror(a);
     }
+    //---------------------------------------------------------------------------------------------------
+    //出现奇数次的数字;
+    public static void jiShuNum(int n,int[] arr){
+        Map<Integer,Integer> map = new HashMap<>();
+        for (int num : arr){
+            map.put(num,map.getOrDefault(num,0)+1);
+        }
+        int[] ans = new int[2];
+        int i = 0;
+        for (int key:map.keySet()){
+            if (map.get(key) % 2 != 0){
+                ans[i++] = key;
+            }
+        }
+        Arrays.sort(ans);
+        System.out.print(ans[0]+" "+ans[1]);
+    }
+    public static void oj31(){
+        Scanner sc = new Scanner(System.in);
+        while (sc.hasNextInt()){
+            int n = sc.nextInt();
+            int[] arr = new int[n];
+            for (int i = 0; i < n; i++) {
+                arr[i] = sc.nextInt();
+            }
+            jiShuNum(n,arr);
+        }
+    }
+    //找出比数组值小的数下标,左右最近的第一个,没有返回-1;
+    public static void minIndex(int[] arr){
+        for (int i = 0; i < arr.length; i++) {
+            int leftMin = -1;
+            int rightMin = -1;
+            for (int left = i;left >= 0;left--) {
+                if (arr[left] < arr[i]){
+                    leftMin = left;
+                    break;
+                }
+            }
+            for (int right = i;right < arr.length;right++){
+                if (arr[right] < arr[i]){
+                    rightMin = right;
+                    break;
+                }
+            }
+            System.out.println(leftMin+" "+rightMin);
+        }
+    }
+    public static void oj32(){
+        Scanner sc = new Scanner(System.in);
+        while (sc.hasNextInt()){
+            int n =sc.nextInt();
+            int[] arr = new int[n];
+            for (int i = 0; i < n; i++) {
+                arr[i] = sc.nextInt();
+            }
+            minIndex(arr);
+        }
+    }
     public static void main(String[] args) {
 
     }
