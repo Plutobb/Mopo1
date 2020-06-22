@@ -853,8 +853,58 @@ public class oneDayOJ {
     public static void oj34(){
         huanQian();
     }
+    //---------------------------------------------------------------------------------------------------
+    //子串判断;
+    public static boolean[] chkSubStr(String[] p, int n, String s) {
+        // write code here
+        boolean[] ans = new boolean[n];
+        for (int i = 0; i < n; i++) {
+            //自带API判断是否存在子串;
+            ans[i] = s.contains(p[i]);
+        }
+        return ans;
+    }
+    public static void oj35(){
+        String[] p = {"ab","bc","c","d"};
+        String s = "abc";
+        System.out.println(Arrays.toString(chkSubStr(p, 4, s)));
+    }
+    //---------------------------------------------------------------------------------------------------
+    //输入输出,排序成绩;
+    public static void  paiXuScore(){
+        Scanner sc = new Scanner(System.in);
+        Map<String, Integer> map = new HashMap<>();
+        List<Map.Entry<String,Integer>> list = new ArrayList<>();
+        int peopleNum = sc.nextInt();
+        int sortNum = sc.nextInt();
+        for (int i = 0; i < peopleNum; i++) {
+            String name = sc.next();
+            int score = sc.nextInt();
+            map.put(name,score);
+            list.addAll(map.entrySet());
+            map.clear();
+        }
+        for (int i = 0; i < list.size()-1; i++) {
+            for (int j = 0; j < list.size()-1; j++) {
+                if (list.get(j).getValue() < list.get(j+1).getValue()){
+                    Map.Entry<String,Integer> tmp = list.get(j);
+                    list.set(j,list.get(j+1));
+                    list.set(j+1,tmp);
+                }
+            }
+        }
+        if (sortNum == 0){
+            for (int i = 0; i < list.size(); i++) {
+                System.out.println(list.get(i).getKey()+" "+list.get(i).getValue());
+            }
+        }else if (sortNum == 1){
+            for (int i = list.size()-1; i >= 0; i--) {
+                System.out.println(list.get(i).getKey()+" "+list.get(i).getValue());
+            }
+        }
+    }
     public static void main(String[] args) {
-
+        paiXuScore();
     }
 }
 
