@@ -903,8 +903,87 @@ public class oneDayOJ {
             }
         }
     }
-    public static void main(String[] args) {
+    public static void oj36(){
         paiXuScore();
+    }
+    //---------------------------------------------------------------------------------------------------
+    //微信红包;
+    public static int getValue(int[] gifts, int n) {
+        // write code here
+        Map<Integer,Integer> map = new HashMap<>();
+        for (int i = 0; i < n; i++) {
+            int num = gifts[i];
+            map.put(num,map.getOrDefault(num,0)+1);
+            //当放入size大于gifts一半的时候开始判断是否存在合适的金额;
+            if (i+1 > n/2){
+                if (map.get(num) > n / 2){
+                    return num;
+                }
+            }
+        }
+        return 0;
+    }
+    public static void oj37(){
+        int[] n = {1,1,1,2,2};
+        System.out.println(getValue(n,5));
+    }
+    //---------------------------------------------------------------------------------------------------
+    //链表分割;
+    public static class ListNode {
+        int val;
+        ListNode next = null;
+
+        ListNode(int val) {
+            this.val = val;
+        }
+    }
+    public static ListNode partition(ListNode pHead, int x) {
+        // write code here
+        ListNode smlTail = null;
+        ListNode bigTail = null;
+        ListNode bigHead = null;
+        ListNode smlHead = null;
+        while (pHead != null){
+            ListNode node = new ListNode(pHead.val);
+            if (pHead.val < x){
+               if (smlHead == null){
+                   smlHead = smlTail = node;
+               }else {
+                   smlTail.next = node;
+                   smlTail = smlTail.next;
+               }
+            } else {
+                if (bigHead == null){
+                    bigHead = bigTail = node;
+                }else {
+                    bigTail.next = node;
+                    bigTail = bigTail.next;
+                }
+            }
+            pHead = pHead.next;
+        }
+        if (smlHead != null){
+            smlTail.next = bigHead;
+            return smlHead;
+        }else {
+            return bigHead;
+        }
+    }
+    public static void main(String[] args) {
+        ListNode a = new ListNode(1);
+        ListNode b = new ListNode(2);
+        ListNode c = new ListNode(3);
+        ListNode d = new ListNode(4);
+        ListNode e = new ListNode(4);
+        ListNode f = new ListNode(4);
+        ListNode g = new ListNode(4);
+        a.next = b;
+        b.next = c;
+        c.next = d;
+        d.next = e;
+        e.next = f;
+        f.next = g;
+        System.out.println(partition(a,5));
     }
 }
 
