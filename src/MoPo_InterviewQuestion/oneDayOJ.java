@@ -969,7 +969,7 @@ public class oneDayOJ {
             return bigHead;
         }
     }
-    public static void main(String[] args) {
+    public static void oj38(){
         ListNode a = new ListNode(1);
         ListNode b = new ListNode(2);
         ListNode c = new ListNode(3);
@@ -984,6 +984,9 @@ public class oneDayOJ {
         e.next = f;
         f.next = g;
         System.out.println(partition(a,5));
+    }
+    public static void main(String[] args) {
+
     }
 }
 
