@@ -985,8 +985,36 @@ public class oneDayOJ {
         f.next = g;
         System.out.println(partition(a,5));
     }
-    public static void main(String[] args) {
+    //---------------------------------------------------------------------------------------------------
+    //兔子数量
 
+    public static void tuZiNUM(int month){
+
+    }
+    //---------------------------------------------------------------------------------------------------
+    //密码对应;
+    public static void miMa(){
+        Scanner sc =new Scanner(System.in);
+        while (sc.hasNext()){
+            String str = sc.nextLine();
+            StringBuffer ans = new StringBuffer();
+            for (int i = 0; i < str.length(); i++) {
+                int as = 0;
+                if (str.charAt(i) < 'F'&&str.charAt(i)>='A') {
+                     as = str.charAt(i) + 21;
+                }else if (str.charAt(i) >='F'&&str.charAt(i) <='Z'){
+                     as = str.charAt(i) - 5;
+                }else if (str.charAt(i) == 32){
+                    as = 32;
+                }
+                char ch = (char) as;
+                ans.append(ch);
+            }
+            System.out.println(ans);
+        }
+    }
+    public static void main(String[] args) {
+        miMa();
     }
 }
 
