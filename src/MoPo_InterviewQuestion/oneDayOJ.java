@@ -1013,8 +1013,92 @@ public class oneDayOJ {
             System.out.println(ans);
         }
     }
+    //---------------------------------------------------------------------------------------------------
+    //到底买不买-选出子串;
+    public static void maiZhuZi(String tanZhu,String maiJia){
+        StringBuffer mai = new StringBuffer(maiJia);
+        for (int i = 0; i < tanZhu.length(); i++) {
+            for (int j = 0; j < mai.length(); j++) {
+                if (tanZhu.charAt(i) == mai.charAt(j)){
+                    mai.deleteCharAt(j);
+                    break;
+                }
+            }
+        }
+        if (mai.length() == 0){
+            int ans = tanZhu.length()-maiJia.length();
+            System.out.println("Yes"+" "+ans);
+        }else {
+            int ans = mai.length();
+            System.out.println("No"+" "+ans);
+        }
+    }
+    public static void oj40(){
+        Scanner sc = new Scanner(System.in);
+        while (sc.hasNext()){
+            String a = sc.nextLine();
+            String b = sc.nextLine();
+            maiZhuZi(a,b);
+        }
+    }
+    //---------------------------------------------------------------------------------------------------
+    //链式A+B;
+    public static ListNode plusAB(ListNode a, ListNode b) {
+        // write code here
+        int jinWei = 0;
+        ListNode head = null;
+        ListNode tile = null;
+        ListNode node = null;
+        while (a != null || b != null) {
+            if (a == null){
+                 node = new ListNode((b.val + jinWei)%10);
+                if (b.val + jinWei > 9){
+                    jinWei = 1;
+                }else {
+                    jinWei = 0;
+                }
+                b = b.next;
+            }else if (b == null){
+                 node = new ListNode((a.val + jinWei)%10);
+                if (a.val + jinWei > 9){
+                    jinWei = 1;
+                }else {
+                    jinWei = 0;
+                }
+                a = a.next;
+            }else {
+                 node = new ListNode((a.val + b.val + jinWei) % 10);
+                if (a.val + b.val + jinWei > 9){
+                    jinWei = 1;
+                }else {
+                    jinWei = 0;
+                }
+                a = a.next;
+                b = b.next;
+            }
+            if (head == null){
+                head = tile = node;
+            }else {
+                tile.next = node;
+                tile = tile.next;
+            }
+        }
+        if (jinWei == 1){
+            node = new ListNode((jinWei)%10);
+            tile.next = node;
+        }
+        return head;
+    }
     public static void main(String[] args) {
-        miMa();
+        ListNode a = new ListNode(9);
+        ListNode b = new ListNode(9);
+        ListNode c = new ListNode(9);
+        ListNode d = new ListNode(1);
+        ListNode e = new ListNode(0);
+        a.next = b;
+        b.next = c;
+        d.next = e;
+        plusAB(a,d);
     }
 }
 
