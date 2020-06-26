@@ -1051,6 +1051,7 @@ public class oneDayOJ {
         ListNode node = null;
         while (a != null || b != null) {
             if (a == null){
+                //a==null时 b!= null 说明b的长度比a长,只对b进行运算;
                  node = new ListNode((b.val + jinWei)%10);
                 if (b.val + jinWei > 9){
                     jinWei = 1;
@@ -1059,6 +1060,7 @@ public class oneDayOJ {
                 }
                 b = b.next;
             }else if (b == null){
+                //b==null时 a!= null 说明b的长度比a短,只对a进行运算;
                  node = new ListNode((a.val + jinWei)%10);
                 if (a.val + jinWei > 9){
                     jinWei = 1;
@@ -1067,6 +1069,7 @@ public class oneDayOJ {
                 }
                 a = a.next;
             }else {
+                //a != null 且 b!=null ,对a和b进行加法运算;
                  node = new ListNode((a.val + b.val + jinWei) % 10);
                 if (a.val + b.val + jinWei > 9){
                     jinWei = 1;
@@ -1076,6 +1079,7 @@ public class oneDayOJ {
                 a = a.next;
                 b = b.next;
             }
+            //尾插法;
             if (head == null){
                 head = tile = node;
             }else {
@@ -1083,13 +1087,14 @@ public class oneDayOJ {
                 tile = tile.next;
             }
         }
+        //当进位最后依然为1的时候,需要多加一个节点;
         if (jinWei == 1){
             node = new ListNode((jinWei)%10);
             tile.next = node;
         }
         return head;
     }
-    public static void main(String[] args) {
+    public static void oj41(){
         ListNode a = new ListNode(9);
         ListNode b = new ListNode(9);
         ListNode c = new ListNode(9);
@@ -1100,5 +1105,153 @@ public class oneDayOJ {
         d.next = e;
         plusAB(a,d);
     }
+    //---------------------------------------------------------------------------------------------------
+    //判断是否为平衡二叉树;
+    public static Boolean isBalance(TreeNode root) {
+        if (root == null){
+            return true;
+        }
+        if (root.left == null && root.right == null){
+            return true;
+        }
+        if (Math.abs(treeDeep(root.left)-treeDeep(root.right)) > 1){
+            return false;
+        }
+        return isBalance(root.left) && isBalance(root.right);
+    }
+    public static int treeDeep(TreeNode root){
+        if (root == null){
+            return 0;
+        }
+        int left = treeDeep(root.left);
+        int right = treeDeep(root.right);
+        return (Math.max(left, right))+1;
+    }
+    public static void oj42(){
+        TreeNode a = new TreeNode(1);
+        TreeNode b = new TreeNode(1);
+        TreeNode c = new TreeNode(1);
+        TreeNode d = new TreeNode(1);
+        TreeNode e = new TreeNode(1);
+        TreeNode f = new TreeNode(1);
+        TreeNode g = new TreeNode(1);
+        TreeNode h = new TreeNode(1);
+        a.right = c;
+        b.left = d;
+        b.right = e;
+        c.left = f;
+        c.right = g;
+        e.right = h;
+        f.right = b;
+        System.out.println(isBalance(a));
+    }
+    //---------------------------------------------------------------------------------------------------
+    //数字分类;
+    public static void numFenLei(int[] arr,int n){
+        if (A1(arr) == Integer.MIN_VALUE){
+            System.out.print("N"+" ");
+        }else {
+            System.out.print(A1(arr)+" ");
+        }
+        if (A2(arr) == 0){
+            System.out.print("N"+" ");
+        }else {
+            System.out.print(A2(arr)+" ");
+        }
+        if (A3(arr) == 0){
+            System.out.print("N"+" ");
+        }else {
+            System.out.print(A3(arr)+" ");
+        }
+        if (A4(arr) == Integer.MIN_VALUE){
+            System.out.print("N"+" ");
+        }else {
+            System.out.printf("%.1f",A4(arr));
+            System.out.print(" ");
+        }
+        if (A5(arr) == Integer.MIN_VALUE){
+            System.out.print("N");
+        }else {
+            System.out.print(A5(arr));
+        }
+    }
+    public static int A1(int[] arr){
+        int sum = 0;
+        int n = 0;
+        for (int num : arr){
+            if (num % 10 == 0){
+                sum += num;
+                n++;
+            }
+        }
+        if (n > 0) {
+            return sum;
+        }else {
+            return Integer.MIN_VALUE;
+        }
+    }
+    public static int A2(int[] arr){
+        int sum = 0;
+        boolean change = true;
+        for (int value : arr) {
+            if (value % 5 == 1) {
+                if (change) {
+                    sum += value;
+                    change = false;
+                } else {
+                    sum = sum - value;
+                    change = true;
+                }
+            }
+        }
+        return sum;
+    }
+    public static int A3(int[] arr){
+        int sum = 0;
+        for (int num : arr){
+            if (num % 5 == 2){
+                sum++;
+            }
+        }
+        return sum;
+    }
+    public static double A4(int[] arr){
+        int n = 0;
+        int sum = 0;
+        double avg;
+        for (int num:arr){
+            if(num % 5 == 3){
+                sum += num;
+                n++;
+            }
+        }
+        if(n > 0) {
+            avg = (double) sum / (double) n;
+            return avg;
+        }else {
+            return Integer.MIN_VALUE;
+        }
+    }
+    public static int A5(int[] arr){
+        int max = Integer.MIN_VALUE;
+        for (int num : arr){
+            if (num % 5 == 4){
+                max = Math.max(max,num);
+            }
+        }
+        return max;
+    }
+    public static void main(String[] args) {
+        Scanner sc= new Scanner(System.in);
+        while (sc.hasNext()){
+            int n = sc.nextInt();
+            int[] arr = new int[n];
+            for (int i = 0; i < n; i++) {
+                arr[i] = sc.nextInt();
+            }
+            numFenLei(arr,n);
+        }
+    }
+    //---------------------------------------------------------------------------------------------------
 }
 
