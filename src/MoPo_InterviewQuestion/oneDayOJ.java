@@ -1241,7 +1241,7 @@ public class oneDayOJ {
         }
         return max;
     }
-    public static void main(String[] args) {
+    public static void oj43(){
         Scanner sc= new Scanner(System.in);
         while (sc.hasNext()){
             int n = sc.nextInt();
@@ -1253,5 +1253,79 @@ public class oneDayOJ {
         }
     }
     //---------------------------------------------------------------------------------------------------
+    //小易的升级之路;
+    public static void stepByStep(int[] arr,int n){
+        int power = n;
+        for (int i = 0; i < arr.length; i++) {
+            if (arr[i] <= power){
+                power += arr[i];
+            }else {
+                int gongYue = power;
+                while (arr[i] != gongYue){
+                    if (arr[i] > gongYue){
+                        arr[i] = arr[i] - gongYue;
+                    }else {
+                        gongYue = gongYue - arr[i];
+                    }
+                }
+                power = power + gongYue;
+            }
+        }
+        System.out.println(power);
+    }
+    public static void oj44(){
+        Scanner sc = new Scanner(System.in);
+        while (sc.hasNext()){
+            int n = sc.nextInt();
+            int power = sc.nextInt();
+            int[] arr = new int[n];
+            for (int i = 0; i < n; i++) {
+                arr[i] = sc.nextInt();
+            }
+            stepByStep(arr,power);
+        }
+    }
+    //---------------------------------------------------------------------------------------------------
+    //最高分是多少;
+    public static void studentSystem(int[] arr,String c,int a,int b){
+        if (c.equals("Q")){
+            int max = Integer.MIN_VALUE;
+            int start ,end;
+            //这里有一个坑,A和B之间的最大值,但没有说A一定大于B,也可能是B>A;
+            if (a < b){
+                start = a-1;
+                end = b - 1;
+            }else {
+                end = a -1;
+                start = b-1;
+            }
+            for (int i = start; i <= end; i++) {
+                if (arr[i] > max){
+                    max = arr[i];
+                }
+            }
+            System.out.println(max);
+        }
+        if (c.equals("U")){
+            arr[a-1] = b;
+        }
+    }
+    public static void main(String[] args) {
+        Scanner sc = new Scanner(System.in);
+        while (sc.hasNext()){
+            int n = sc.nextInt();
+            int m = sc.nextInt();
+            int[] arr= new int[n];
+            for (int i = 0; i < n; i++) {
+                arr[i] = sc.nextInt();
+            }
+            for (int i = 0; i < m; i++) {
+                String c = sc.next();
+                int a =sc.nextInt();
+                int b =sc.nextInt();
+                studentSystem(arr,c,a,b);
+            }
+        }
+    }
 }
 
