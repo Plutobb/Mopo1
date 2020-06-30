@@ -1327,21 +1327,82 @@ public class oneDayOJ {
             }
         }
     }
-    public static void main(String[] args) {
+    //---------------------------------------------------------------------------------------------------
+    //数字之和
+    public static void numSum(int n){
+        int sum1 = 0;
+        int sum2 = 0;
+        int n2 = n*n;
+        while (n != 0){
+            int x = n % 10;
+            n = n / 10;
+            sum1 += x;
+        }
+        while (n2 != 0){
+            int x = n2 % 10;
+            n2 = n2 /10;
+            sum2 += x;
+        }
+        System.out.println(sum1+" "+sum2);
+    }
+    public static void oj46(){
         Scanner sc = new Scanner(System.in);
         while (sc.hasNext()){
             int n = sc.nextInt();
-            int m = sc.nextInt();
-            int[] arr= new int[n];
-            for (int i = 0; i < n; i++) {
-                arr[i] = sc.nextInt();
+            numSum(n);
+        }
+    }
+    //---------------------------------------------------------------------------------------------------
+    //计票统计
+    public static class jiPiao {
+        Map<String, Integer> map = new HashMap<>();
+        //加候选人接口
+        public int addCandidate(String name) {
+            if (!map.containsKey(name)){
+                map.put(name,0);
+                return 1;
+            }else {
+               return 0;
             }
-            for (int i = 0; i < m; i++) {
-                String c = sc.next();
-                int a =sc.nextInt();
-                int b =sc.nextInt();
-                studentSystem(arr,c,a,b);
+        }
+        //投票接口
+        public  void vote(String name) {
+            if (map.containsKey(name)){
+                map.put(name,map.get(name)+1);
+            }else {
+                map.put("Invalid",map.getOrDefault("Invalid",0)+1);
             }
+        }
+
+        //获取结果入口
+        public  int getVoteResult(String name) {
+            if (map.containsKey(name)){
+                return map.get(name);
+            }else {
+                return map.get("Invalid");
+            }
+        }
+        //清空数据;
+        public  void clear() {
+            map.clear();
+        }
+    }
+    public static void main(String[] args) {
+        Scanner sc = new Scanner(System.in);
+        jiPiao jiPiao = new jiPiao();
+        while (sc.hasNext()){
+            int houXuan = sc.nextInt();
+            for (int i = 0; i < houXuan; i++) {
+                jiPiao.addCandidate(sc.next());
+            }
+            int touPiao = sc.nextInt();
+            for (int i = 0; i < touPiao; i++) {
+                jiPiao.vote(sc.next());
+            }
+            for (Map.Entry<String, Integer> people : jiPiao.map.entrySet()){
+                System.out.println(people.getKey()+" : "+people.getValue());
+            }
+            jiPiao.clear();
         }
     }
 }
