@@ -1387,7 +1387,7 @@ public class oneDayOJ {
             map.clear();
         }
     }
-    public static void main(String[] args) {
+    public static void oj47(){
         Scanner sc = new Scanner(System.in);
         jiPiao jiPiao = new jiPiao();
         while (sc.hasNext()){
@@ -1404,6 +1404,90 @@ public class oneDayOJ {
             }
             jiPiao.clear();
         }
+    }
+    //---------------------------------------------------------------------------------------------------
+    //守形数;
+    public static int shouXing(int n){
+        int num = n*n;
+        if (num > 1000){
+            num = num % 1000;
+            if (num == n){
+                System.out.println("Yes!");
+                return 1;
+            }
+        }else if (num > 100){
+            num = num %100;
+            if (num == n){
+                System.out.println("Yes!");
+                return 1;
+            }
+        }else if (num > 10) {
+            num = num % 10;
+            if (num == n) {
+                System.out.println("Yes!");
+                return 1;
+            }
+        }
+        System.out.println("No!");
+        return -1;
+    }
+    public static void oj48(){
+        Scanner sc = new Scanner(System.in);
+        while (sc.hasNext()){
+            int n = sc.nextInt();
+            shouXing(n);
+        }
+    }
+    //---------------------------------------------------------------------------------------------------
+    //密码验证合格程序;
+    public static void miMaYanZheng(String miMa){
+        if (miMa.length() <= 8 ){
+            System.out.println("NG");
+            return;
+        }
+        int num = 0;
+        int bigZiMu = 0;
+        int smallZiMu = 0;
+        int teShu = 0;
+        for (int i = 0; i < miMa.length(); i++) {
+            char ch = miMa.charAt(i);
+            if (ch >= '0' && ch <= '9'){
+                num = 1;
+            }else
+            if (ch >= 'a' && ch <= 'z' ){
+                smallZiMu = 1;
+            }else
+            if (ch >= 'A' && ch <= 'Z' ){
+                bigZiMu = 1;
+            }else {
+                teShu = 1;
+            }
+        }
+        if (num + bigZiMu + smallZiMu + teShu < 3){
+            System.out.println("NG");
+            return;
+        }
+        for (int index = 0; index < miMa.length() - 3 ; index++) {
+            String str1 = miMa.substring(index, index + 3);
+            for (int i = index+3; i < miMa.length()-3; i++) {
+                String str2 = miMa.substring(i,i+3);
+                if (str1.equals(str2)) {
+                    System.out.println("NG");
+                    return;
+                }
+            }
+        }
+        System.out.println("OK");
+    }
+    public static void oj49(){
+        Scanner sc = new Scanner(System.in);
+        while (sc.hasNext()){
+            String miMa = sc.next();
+            miMaYanZheng(miMa);
+        }
+    }
+    public static void main(String[] args) {
+
     }
 }
 
