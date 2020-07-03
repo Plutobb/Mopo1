@@ -1486,6 +1486,39 @@ public class oneDayOJ {
             miMaYanZheng(miMa);
         }
     }
+    //---------------------------------------------------------------------------------------------------
+    //年会抽奖
+    public static void zhongJiangLv(int n){
+        int mu = fenMu(n);
+        int zi = fenZi(n);
+        double ans =(double) zi / mu * 100;
+        System.out.printf("%.2f",ans);
+        System.out.print("%");
+    }
+
+    public static int fenMu(int n){
+        int result = 1;
+        if (n == 1)
+            return 1;
+        else if (n > 1)
+            result = n * fenMu(n - 1);
+        return result;
+    }
+    public static int fenZi(int n){
+        if (n == 1)
+            return 0;
+        else if (n == 2)
+            return 1;
+        else
+            return (n - 1)*(fenZi(n - 1) + fenZi(n - 2));
+    }
+    public static void oj50(){
+        Scanner sc =new Scanner(System.in);
+        while (sc.hasNext()){
+            int n = sc.nextInt();
+            zhongJiangLv(n);
+        }
+    }
     public static void main(String[] args) {
 
     }
