@@ -1519,6 +1519,92 @@ public class oneDayOJ {
             zhongJiangLv(n);
         }
     }
+    //---------------------------------------------------------------------------------------------------
+    //说反话;
+    public static void shuoFanHua(String str){
+        String[] strings = str.split(" ");
+        for (int i = strings.length-1; i >= 0; i--) {
+            if (i > 0) {
+                System.out.print(strings[i] + " ");
+            }else {
+                System.out.print(strings[i]);
+            }
+        }
+    }
+    public static void oj51(){
+        Scanner sc = new Scanner(System.in);
+        while (sc.hasNext()){
+            String str = sc.nextLine();
+            shuoFanHua(str);
+        }
+    }
+    //---------------------------------------------------------------------------------------------------
+    //简单错误记录
+    private static class cuoWuJiLu{
+        String name;
+        String name16;
+        int hangShu;
+        int num;
+        int index;
+    }
+    public static void jiLu(String str,int hang,List<cuoWuJiLu> list,int index){
+        String[] strings = str.split("\\\\");
+        String name = strings[strings.length - 1];
+        cuoWuJiLu cuoWuJiLu = new cuoWuJiLu();
+        for (cuoWuJiLu node : list) {
+            if (node.name.equals(name) && node.hangShu == hang) {
+                node.num++;
+                return;
+            }
+        }
+        cuoWuJiLu.name = name;
+        if (name.length() > 16) {
+            cuoWuJiLu.name16 = name.substring(name.length() - 17, name.length() - 1);
+        } else {
+            cuoWuJiLu.name16 = name;
+        }
+        cuoWuJiLu.hangShu = hang;
+        cuoWuJiLu.num = 1;
+        cuoWuJiLu.index = index;
+        list.add(cuoWuJiLu);
+    }
+    public static void oj52(){
+        Scanner sc = new Scanner(System.in);
+        List<cuoWuJiLu> list = new LinkedList<>();
+        int index = 0;
+        while (sc.hasNext()){
+            String str = sc.next();
+            int hang = sc.nextInt();
+            index++;
+            jiLu(str,hang,list,index);
+            list.sort(new Comparator<cuoWuJiLu>() {
+                @Override
+                public int compare(cuoWuJiLu o1,cuoWuJiLu o2) {
+                    return o2.num - o1.num;
+                }
+            });
+            list.sort(new Comparator<cuoWuJiLu>() {
+                @Override
+                public int compare(cuoWuJiLu o1, cuoWuJiLu o2) {
+                    if (o1.num == o2.num){
+                        return o1.index - o2.index;
+                    }else {
+                        return 0;
+                    }
+                }
+            });
+        }
+        if (list.size() <= 8){
+            for (cuoWuJiLu node : list){
+                System.out.println(node.name16 + " " + node.hangShu + " " + node.num);
+            }
+        }else {
+            for (int i = 0; i < 8; i++) {
+                cuoWuJiLu node = list.get(i);
+                System.out.println(node.name16 + " " + node.hangShu + " " + node.num);
+            }
+        }
+    }
     public static void main(String[] args) {
 
     }
