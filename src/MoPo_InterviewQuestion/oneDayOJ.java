@@ -1580,33 +1580,27 @@ public class oneDayOJ {
             list.sort(new Comparator<cuoWuJiLu>() {
                 @Override
                 public int compare(cuoWuJiLu o1,cuoWuJiLu o2) {
-                    return o2.num - o1.num;
-                }
-            });
-            list.sort(new Comparator<cuoWuJiLu>() {
-                @Override
-                public int compare(cuoWuJiLu o1, cuoWuJiLu o2) {
                     if (o1.num == o2.num){
                         return o1.index - o2.index;
                     }else {
-                        return 0;
+                        return o2.num - o1.num;
                     }
                 }
             });
-        }
-        if (list.size() <= 8){
-            for (cuoWuJiLu node : list){
-                System.out.println(node.name16 + " " + node.hangShu + " " + node.num);
-            }
-        }else {
-            for (int i = 0; i < 8; i++) {
-                cuoWuJiLu node = list.get(i);
-                System.out.println(node.name16 + " " + node.hangShu + " " + node.num);
+            if (list.size() <= 8){
+                for (cuoWuJiLu node : list){
+                    System.out.println(node.name16 + " " + node.hangShu + " " + node.num);
+                }
+            }else {
+                for (int i = 0; i < 8; i++) {
+                    cuoWuJiLu node = list.get(i);
+                    System.out.println(node.name16 + " " + node.hangShu + " " + node.num);
+                }
             }
         }
     }
     public static void main(String[] args) {
-
+        oj52();
     }
 }
 
