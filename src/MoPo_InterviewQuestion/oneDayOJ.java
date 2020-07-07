@@ -1599,8 +1599,75 @@ public class oneDayOJ {
             }
         }
     }
+    //---------------------------------------------------------------------------------------------------
+    //找零钱;
+    public static void zhaoLingQian(String p,String a){
+        String[] pStrings = p.split("\\.");
+        String[] aStrings = a.split("\\.");
+        int[] pint = new int[3];
+        int[] aint = new int[3];
+        long sump = 0;
+        long suma = 0;
+        for (int i = 0; i < pStrings.length; i++) {
+            pint[i] = Integer.parseInt(pStrings[i]);
+            if (i == 0) {
+                sump += pint[i] * 17 * 19;
+            }else if (i == 1){
+                sump += pint[i] * 19;
+            }else {
+                sump += pint[i];
+            }
+        }
+        for (int i = 0; i < aStrings.length; i++) {
+            aint[i] = Integer.parseInt(aStrings[i]);
+            if (i == 0) {
+                suma += aint[i] * 17 * 19;
+            }else if (i == 1){
+                suma += aint[i] * 19;
+            }else {
+                suma += aint[i];
+            }
+        }
+        long lingQian = Math.abs(suma - sump);
+        long g = 0;
+        long s = 0;
+        long k = 0;
+        g = lingQian / (17 * 19);
+        lingQian = lingQian % (17 * 19);
+        s = lingQian / 19;
+        lingQian = lingQian % 19;
+        k = lingQian;
+        if (suma < sump){
+            System.out.print("-");
+        }
+        System.out.print(g+"."+s+"."+k);
+    }
+    public static void oj53(){
+        Scanner sc = new Scanner(System.in);
+        while (sc.hasNext()){
+            String p = sc.next();
+            String a = sc.next();
+            zhaoLingQian(p,a);
+        }
+    }
+    //---------------------------------------------------------------------------------------------------
+    //2的个数;
+    public static int countNumberOf2s(int n) {
+        // write code here
+        int sum = 0;
+        for (int i = 0; i <= n; i++) {
+            String str = Integer.toString(i);
+            for (int j = 0; j < str.length(); j++) {
+                if (str.charAt(j) == '2'){
+                    sum++;
+                }
+            }
+        }
+        return sum;
+    }
     public static void main(String[] args) {
-        oj52();
+        Scanner sc = new Scanner(System.in);
+        System.out.println(countNumberOf2s(sc.nextInt()));
     }
 }
 
