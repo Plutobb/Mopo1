@@ -1652,6 +1652,7 @@ public class oneDayOJ {
     }
     //---------------------------------------------------------------------------------------------------
     //2的个数;
+    //超时了!这个方法!
     public static int countNumberOf2s(int n) {
         // write code here
         int sum = 0;
@@ -1666,8 +1667,7 @@ public class oneDayOJ {
         return sum;
     }
     public static void main(String[] args) {
-        Scanner sc = new Scanner(System.in);
-        System.out.println(countNumberOf2s(sc.nextInt()));
+
     }
 }
 
