@@ -1666,8 +1666,82 @@ public class oneDayOJ {
         }
         return sum;
     }
+    //---------------------------------------------------------------------------------------------------
+    //石头剪刀布;
+    public static class jiLu{
+        int aWin = 0;
+        int bWin = 0;
+        int ping = 0;
+        int a_b= 0;
+        int a_c= 0;
+        int a_j= 0;
+        int b_b= 0;
+        int b_c= 0;
+        int b_j= 0;
+    }
+    public static void shiTouJianDaoBu(String a,String b,jiLu node1){
+        switch (a){
+            case "B" :
+                if (b.equals("B")) node1.ping++;
+                if (b.equals("C")) {node1.aWin++; node1.a_b++;}
+                if (b.equals("J")) {node1.bWin++; node1.b_j++;}
+                break;
+            case "C" :
+                if (b.equals("B")) {node1.bWin++; node1.b_b++;}
+                if (b.equals("C")) node1.ping++;
+                if (b.equals("J")) {node1.aWin++; node1.a_c++;}
+                break;
+            case "J" :
+                if (b.equals("J")) node1.ping++;
+                if (b.equals("C")) {node1.bWin++; node1.b_c++;}
+                if (b.equals("B")) {node1.aWin++; node1.a_j++;}
+                break;
+        }
+    }
+    public static void oj55(){
+        Scanner sc = new Scanner(System.in);
+        jiLu node = new jiLu();
+        while (sc.hasNext()){
+            int n = sc.nextInt();
+            for (int i = 0; i < n; i++) {
+                String a = sc.next();
+                String b = sc.next();
+                shiTouJianDaoBu(a, b, node);
+            }
+            System.out.println(node.aWin+" "+ node.ping+" "+node.bWin);
+            System.out.println(node.bWin+" "+ node.ping+" "+node.aWin);
+            if (node.a_b >= Math.max(node.a_c,node.a_j)){
+                System.out.print("B"+" ");
+            }else if (node.a_c >= node.a_j){
+                System.out.print("C"+" ");
+            }else {
+                System.out.print("J"+" ");
+            }
+            if (node.b_b >= Math.max(node.b_c,node.b_j)){
+                System.out.print("B");
+            }else if (node.b_c >= node.b_j){
+                System.out.print("C");
+            }else {
+                System.out.print("J");
+            }
+        }
+    }
+    //---------------------------------------------------------------------------------------------------
+    //爬楼梯;
+    public static int countWays(int n) {
+        int[] dp = {1,1,2};
+        if (n == 0) return 0;
+        else if (n <= 4) return dp[n - 1];
+        for (int i = 4; i < n; i++) {
+            int tmp = ((dp[0] + dp[1]) %1000000007 + dp[2]) %1000000007;
+            dp[0] = dp[1];
+            dp[1] = dp[2];
+            dp[2] = tmp;
+        }
+        return dp[2];
+    }
     public static void main(String[] args) {
-
+        System.out.println(countWays(100000));
     }
 }
 
