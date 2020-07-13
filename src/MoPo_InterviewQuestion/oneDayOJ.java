@@ -1745,8 +1745,43 @@ public class oneDayOJ {
 //    public static int calculateMax(int[] prices) {
 //
 //    }
+    //---------------------------------------------------------------------------------------------------
+    //组成多边形;
+    public static void duoBianXing(List<Integer> list){
+        int sum = 0;//存储总长度
+        int maxLength = 0;
+        if (list.size() <= 2){
+            System.out.println("No");
+        }else {
+            for (int num : list){
+                 sum  += num;
+                 maxLength = Math.max(num,maxLength);
+            }
+            if (sum > 2*maxLength) System.out.println("Yes");
+            else System.out.println("No");
+        }
+    }
     public static void main(String[] args) {
-
+        Scanner sc = new Scanner(System.in);
+        while (sc.hasNext()){
+            List<Integer> list = new LinkedList<>();
+            int n = sc.nextInt();
+            for (int i = 0; i < n; i++) {
+                int caoZuo = sc.nextInt();
+                int length = sc.nextInt();
+                if (caoZuo == 1){
+                    list.add(length);
+                }else {
+                    for (int j = 0; j < list.size(); j++) {
+                        if (list.get(j) == length) {
+                            list.remove(j);
+                            break;
+                        }
+                    }
+                }
+                duoBianXing(list);
+            }
+        }
     }
 }
 
