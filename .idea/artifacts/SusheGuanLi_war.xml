@@ -1,0 +1,14 @@
+<component name="ArtifactManager">
+  <artifact type="war" name="SusheGuanLi:war">
+    <output-path>$PROJECT_DIR$/../Project_IDEA/SusheGuanLi/target</output-path>
+    <properties id="maven-jee-properties">
+      <options>
+        <module>SusheGuanLi</module>
+        <packaging>war</packaging>
+      </options>
+    </properties>
+    <root id="archive" name="sds.war">
+      <element id="artifact" artifact-name="SusheGuanLi:war exploded" />
+    </root>
+  </artifact>
+</component>

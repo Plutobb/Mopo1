@@ -9,12 +9,12 @@ public class anNiu {
     JButton button;
     public  void  mainFrame(){
         JFrame frame=new JFrame();
-        frame.setSize(100,100);//窗口的大小
+        frame.setSize(300,300);//窗口的大小
         frame.setLocation(300,300);//坐标位置
         frame.setTitle("hello CSDN");//设置标题
         JLabel label_name=new JLabel("label标签");//实例化labael标签
         JTextField textfield=new JTextField();//实例化JTextfield
-        button=new JButton("按钮");//实例化一个按钮
+        button=new JButton("按钮1");//实例化一个按钮
         JRadioButton jradiobutton=new JRadioButton("单选");//实例化一个单选框
         JCheckBox    checkbox=new JCheckBox();//实例化一个多选框
         //=====================布局==========================================
@@ -22,6 +22,10 @@ public class anNiu {
         frame.setLayout(layout);//设置布局
         //==============将组件添加到窗体上====================================
         frame.add(button);
+        frame.add(jradiobutton);
+        frame.add(checkbox);
+        frame.add(label_name);
+        frame.add(textfield);
         //===================================================================
         //创建事件监听器
         ActionListener a=new ActionListener(){
@@ -32,6 +36,7 @@ public class anNiu {
             }
         };
         button.addActionListener(a);
+        jradiobutton.addActionListener(a);
         frame.setVisible(true);
     }
 
