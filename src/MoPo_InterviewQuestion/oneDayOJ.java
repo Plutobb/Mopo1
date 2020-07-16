@@ -1761,7 +1761,7 @@ public class oneDayOJ {
             else System.out.println("No");
         }
     }
-    public static void main(String[] args) {
+    public static void oj56(){
         Scanner sc = new Scanner(System.in);
         while (sc.hasNext()){
             List<Integer> list = new LinkedList<>();
@@ -1782,6 +1782,29 @@ public class oneDayOJ {
                 duoBianXing(list);
             }
         }
+    }
+    //---------------------------------------------------------------------------------------------------
+    //对角打印二维数组;
+    public static int[] arrayPrint(int[][] arr, int n) {
+        int[] ans = new int[n*n];
+        int index = 0;
+        for (int i = n-1; i >= 0; i--) {
+            int x = i;
+            int y = n-1;
+            while (x < n && y >= 0) {
+                ans[index++] = arr[y--][x++];
+            }
+        }
+        for (int i = n - 2; i >= 0; i--) {
+            int x = i;
+            int y = 0;
+            while (x >= 0 && y < n){
+                ans[index++] = arr[x--][y++];
+            }
+        }
+        return ans;
+    }
+    public static void main(String[] args) {
     }
 }
 
