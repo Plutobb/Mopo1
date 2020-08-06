@@ -7,15 +7,20 @@
         <sourceOutputDir name="target/generated-sources/annotations" />
         <sourceTestOutputDir name="target/generated-test-sources/test-annotations" />
         <outputRelativeToContentRoot value="true" />
-        <module name="SusheGuanLi" />
-        <module name="fristWeb" />
         <module name="blog" />
+        <module name="SpringTest" />
+        <module name="SusheGuanLi" />
+        <module name="GoBang" />
+        <module name="fristWeb" />
       </profile>
     </annotationProcessing>
     <bytecodeTargetLevel>
       <module name="blog" target="1.8" />
       <module name="fristWeb" target="1.8" />
+      <module name="GoBang" target="1.8" />
       <module name="maven_Test" target="1.5" />
+      <module name="Project_IDEA" target="1.5" />
+      <module name="SpringTest" target="1.5" />
       <module name="SusheGuanLi" target="1.8" />
       <module name="SuSheGuanLiXiTong" target="1.5" />
       <module name="web" target="1.5" />

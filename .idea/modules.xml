@@ -2,8 +2,10 @@
 <project version="4">
   <component name="ProjectModuleManager">
     <modules>
+      <module fileurl="file://$PROJECT_DIR$/../Project_IDEA/GoBang/GoBang.iml" filepath="$PROJECT_DIR$/../Project_IDEA/GoBang/GoBang.iml" />
       <module fileurl="file://$PROJECT_DIR$/Mopo.iml" filepath="$PROJECT_DIR$/Mopo.iml" />
       <module fileurl="file://$PROJECT_DIR$/../Project_IDEA/Project_IDEA.iml" filepath="$PROJECT_DIR$/../Project_IDEA/Project_IDEA.iml" />
+      <module fileurl="file://$PROJECT_DIR$/../Project_IDEA/SpringTest/SpringTest.iml" filepath="$PROJECT_DIR$/../Project_IDEA/SpringTest/SpringTest.iml" />
       <module fileurl="file://$PROJECT_DIR$/../Project_IDEA/SusheGuanLi/SusheGuanLi.iml" filepath="$PROJECT_DIR$/../Project_IDEA/SusheGuanLi/SusheGuanLi.iml" />
       <module fileurl="file://$PROJECT_DIR$/../Project_IDEA/servlet_bolg/blog/blog.iml" filepath="$PROJECT_DIR$/../Project_IDEA/servlet_bolg/blog/blog.iml" />
       <module fileurl="file://$PROJECT_DIR$/../Project_IDEA/maven_Test/fristWeb.iml" filepath="$PROJECT_DIR$/../Project_IDEA/maven_Test/fristWeb.iml" />

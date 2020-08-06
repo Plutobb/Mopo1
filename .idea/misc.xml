@@ -1,6 +1,7 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <project version="4">
   <component name="FrameworkDetectionExcludesConfiguration">
+    <file type="web" url="file://$PROJECT_DIR$/../Project_IDEA/GoBang" />
     <file type="web" url="file://$PROJECT_DIR$/../Project_IDEA/maven_Test" />
     <file type="web" url="file://$PROJECT_DIR$/../Project_IDEA/servlet_bolg/blog" />
     <file type="web" url="file://$PROJECT_DIR$/../Project_IDEA/SusheGuanLi" />
@@ -11,6 +12,8 @@
         <option value="$PROJECT_DIR$/../Project_IDEA/maven_Test/pom.xml" />
         <option value="$PROJECT_DIR$/../Project_IDEA/servlet_bolg/blog/pom.xml" />
         <option value="$PROJECT_DIR$/../Project_IDEA/SusheGuanLi/pom.xml" />
+        <option value="$PROJECT_DIR$/../Project_IDEA/GoBang/pom.xml" />
+        <option value="$PROJECT_DIR$/../Project_IDEA/pom.xml" />
       </list>
     </option>
   </component>
