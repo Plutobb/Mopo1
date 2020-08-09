@@ -1,0 +1,14 @@
+<component name="ArtifactManager">
+  <artifact type="war" name="java15_chess:war">
+    <output-path>$PROJECT_DIR$/../Project_IDEA/Chess_Finish/target</output-path>
+    <properties id="maven-jee-properties">
+      <options>
+        <module>java15_chess</module>
+        <packaging>war</packaging>
+      </options>
+    </properties>
+    <root id="archive" name="java15_chess.war">
+      <element id="artifact" artifact-name="java15_chess:war exploded" />
+    </root>
+  </artifact>
+</component>

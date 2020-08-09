@@ -1,0 +1,27 @@
+<component name="ArtifactManager">
+  <artifact type="exploded-war" name="chess:war exploded">
+    <output-path>$PROJECT_DIR$/../Project_IDEA/Chess_Finish/target/chess</output-path>
+    <properties id="maven-jee-properties">
+      <options>
+        <exploded>true</exploded>
+        <module>chess</module>
+        <packaging>war</packaging>
+      </options>
+    </properties>
+    <root id="root">
+      <element id="directory" name="WEB-INF">
+        <element id="directory" name="classes">
+          <element id="module-output" name="Chess_Finish" />
+        </element>
+        <element id="directory" name="lib">
+          <element id="library" level="project" name="Maven: mysql:mysql-connector-java:5.1.45" />
+          <element id="library" level="project" name="Maven: com.google.code.gson:gson:2.8.2" />
+        </element>
+      </element>
+      <element id="directory" name="META-INF">
+        <element id="file-copy" path="$PROJECT_DIR$/../Project_IDEA/Chess_Finish/target/chess/META-INF/MANIFEST.MF" />
+      </element>
+      <element id="javaee-facet-resources" facet="Chess_Finish/web/Web" />
+    </root>
+  </artifact>
+</component>
