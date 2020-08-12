@@ -1805,8 +1805,54 @@ public class oneDayOJ {
         return ans;
     }
 
+    //---------------------------------------------------------------------------------------------------
+    //二维数组中寻找数字;
+    private static final int[][] erWeiShuZu = {
+            {1,2,8,9},
+            {2,4,9,12},
+            {4,7,10,13},
+            {6,8,11,15}
+    };
+    public static Boolean findNumInErWeiShuZu(int n,int[][] array){
+        if (n < array[0][0] && n > array[3][3]){
+            return false;
+        }
+        for (int i = 0; i < 4; i++) {
+            if (n == array[3][i]){
+                return true;
+            }
+            if (n <= array[3][i]){
+                for (int j = 0; j < 4; j++) {
+                    if (n == array[j][i]){
+                        return true;
+                    }
+                }
+                return false;
+            }
+        }
+        return false;
+    }
+    //---------------------------------------------------------------------------------------------------
+    //数组奇数排前;
+    public static int[] jiShuPaiQian(int[] array){
+        int begin = 0;
+        int end = array.length-1;
+        while (begin < end){
+            while (array[begin] % 2 == 1){
+                    begin++;
+            }
+            while (array[end] % 2 == 0){
+                    end--;
+            }
+            if (begin < end) {
+                int tmp = array[begin];
+                array[begin] = array[end];
+                array[end] = tmp;
+            }
+        }
+        return array;
+    }
     public static void main(String[] args) {
-
     }
 }
 
