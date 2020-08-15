@@ -1852,6 +1852,16 @@ public class oneDayOJ {
         }
         return array;
     }
+    //---------------------------------------------------------------------------------------------------
+    //十进制转二进制,判断有几个数字1
+    public static int findNum1(int n){
+        int count = 0;
+        while (n != 0){
+            n = n & (n-1);
+            count++;
+        }
+        return count;
+    }
     public static void main(String[] args) {
     }
 }
