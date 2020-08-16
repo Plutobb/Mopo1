@@ -1862,7 +1862,29 @@ public class oneDayOJ {
         }
         return count;
     }
+    //---------------------------------------------------------------------------------------------------
+    //求一个有序数组中，两个值相加为key的数字，返回这两个数字的下标。时间复杂度是O(n)
+    public static int[] findSumKey(int[] array,int key){
+        int begin = 0;
+        int end = array.length - 1;
+        int[] ans = new int[2];
+        while (begin < end){
+            int sum = array[begin] + array[end];
+            if (sum > key){
+                end--;
+            }else if (sum < key){
+                begin++;
+            }else {
+                ans[0] = begin;
+                ans[1] = end;
+                return ans;
+            }
+        }
+        return ans;
+    }
     public static void main(String[] args) {
+        int[] a = {1,2,3,4,5,7,7,8};
+        System.out.println(Arrays.toString(findSumKey(a,8)));
     }
 }
 
