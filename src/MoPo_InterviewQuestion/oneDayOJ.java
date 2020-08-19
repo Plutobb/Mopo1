@@ -1882,9 +1882,27 @@ public class oneDayOJ {
         }
         return ans;
     }
+    //---------------------------------------------------------------------------------------------------
+    //TopK问题
+    public static int[] topKNum(int[] array,int k){
+        for (int i = 0; i < array.length-1; i++) {
+            for (int j = i; j < array.length-1; j++) {
+                if (array[j] > array[j + 1]){
+                    int tmp = array[j];
+                    array[j] = array[j+1];
+                    array[j+1]  = tmp;
+                }
+            }
+        }
+        int[] ans = new int[k];
+        for (int i = 0; i < k; i++) {
+            ans[i] = array[i];
+        }
+        return ans;
+    }
     public static void main(String[] args) {
-        int[] a = {1,2,3,4,5,7,7,8};
-        System.out.println(Arrays.toString(findSumKey(a,8)));
+        int[] a = {1,2,3,4,2,7,2,8};
+        System.out.println(Arrays.toString(topKNum(a,3)));
     }
 }
 
