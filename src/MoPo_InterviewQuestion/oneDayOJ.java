@@ -270,19 +270,15 @@ public class oneDayOJ {
     }
     //---------------------------------------------------------------------------------------------------
     //找出出现次数大于等于n/2的数；
-    public static void findNum(int[] a,int size){
+    public static void findNum(int[] a){
+        int size = a.length;
         HashMap<Integer,Integer> map = new HashMap<>();
         for (int i = 0;i < size;i++) {
             int value = a[i];
-            //if (!map.containsKey(value)) {
-                map.put(value, map.getOrDefault(value, 0) + 1);
-//            } else {
-//                map.put(value, map.get(value) + 1);
-//            }
-        }
-        for (int num : map.keySet()){
-            if (map.get(num) >= size / 2){
-                System.out.println(num);
+            map.put(value, map.getOrDefault(value, 0) + 1);
+            if(map.get(value) >= size/2){
+                System.out.println(value);
+                break;
             }
         }
     }
@@ -293,7 +289,7 @@ public class oneDayOJ {
         while (sc.hasNextInt()){
             a[size++] = sc.nextInt();
         }
-        findNum(a,size);
+        findNum(a);
     }
     //---------------------------------------------------------------------------------------------------
     //不要二,在网格W*H的盒子中,放物品每两个物品间欧几里得距离不能等于二;求最大能放的物品数;
@@ -1901,8 +1897,8 @@ public class oneDayOJ {
         return ans;
     }
     public static void main(String[] args) {
-        int[] a = {1,2,3,4,2,7,2,8};
-        System.out.println(Arrays.toString(topKNum(a,3)));
+        int[] array = {1,2,3,2,2,5,6,7,2,2,2};
+        findNum(array);
     }
 }
 
