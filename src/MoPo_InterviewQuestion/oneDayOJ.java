@@ -1896,9 +1896,51 @@ public class oneDayOJ {
         }
         return ans;
     }
+    //---------------------------------------------------------------------------------------------------
+    //超出数组中,两个只出现一次的数字;
+    public static void findOneTimeNum(int[] array){
+        Set<Integer> ans = new HashSet<>();
+        for (int i = 0; i < array.length; i++) {
+            if (!ans.contains(array[i])){
+                ans.add(array[i]);
+            }else {
+                ans.remove(array[i]);
+            }
+        }
+        System.out.println(ans);
+    }
+    //---------------------------------------------------------------------------------------------------
+    //将数组前k个字符进行旋转;
+    //例如"abcdef" k = 2 旋转后为 "cdefab"
+    public static void xuanZhuanShuZu(char[] array,int k){
+        char[] tmp = new char[k];
+        int index = 0;
+        for (int i = 0; i < array.length; i++) {
+            if (i < k ){
+                tmp[i] = array[i];
+            }else {
+                array[i - k] = array[i];
+                if (i >= array.length - k){
+                    array[i] = tmp[index++];
+                }
+            }
+        }
+        System.out.println(array);
+    }
+    //---------------------------------------------------------------------------------------------------
+    //字符串逆置;
+    public static void strNiZhi(String str){
+        char[] tmp = str.toCharArray();
+        char[] ans = new char[tmp.length];
+        int index = 0;
+        for (int i = tmp.length-1; i >=  0; i--) {
+            ans[index++] = tmp[i];
+        }
+        System.out.println(ans);
+    }
     public static void main(String[] args) {
-        int[] array = {1,2,3,2,2,5,6,7,2,2,2};
-        findNum(array);
+        String str = "ancdef 123 o";
+        strNiZhi(str);
     }
 }
 
