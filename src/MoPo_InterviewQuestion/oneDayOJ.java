@@ -1938,9 +1938,68 @@ public class oneDayOJ {
         }
         System.out.println(ans);
     }
+    //---------------------------------------------------------------------------------------------------
+    //字符串压缩 例如"aabbcceef" 压缩为"a2b2c2e2f1"
+    public static void yaSuoString(String str){
+        Map<Character,Integer> map = new HashMap<>();
+        for (int i = 0; i < str.length(); i++) {
+            map.put(str.charAt(i),map.getOrDefault(str.charAt(i),0)+1);
+        }
+        StringBuilder ans = new StringBuilder();
+        for (Map.Entry<Character,Integer> entry: map.entrySet()){
+            ans.append(entry.getKey());
+            ans.append(entry.getValue());
+        }
+        System.out.println(ans);
+    }
+    //---------------------------------------------------------------------------------------------------
+    //字符串转数字,要求不使用库函数;
+    public static void stringToNum(String str){
+        Map<Character,Integer> map = new HashMap<>();
+        map.put('0',0);
+        map.put('1',1);
+        map.put('2',2);
+        map.put('3',3);
+        map.put('4',4);
+        map.put('5',5);
+        map.put('6',6);
+        map.put('7',7);
+        map.put('8',8);
+        map.put('9',9);
+        long ans = 0;
+        Boolean fuShu = false;
+        for (int i = 0; i < str.length(); i++) {
+            if (i == 0) {
+                if (str.charAt(0) == '-') {
+                    fuShu = true;
+                    continue;
+                }
+            }
+            if (!map.containsKey(str.charAt(i))){
+                System.out.println(0);
+                return;
+            }else {
+                int num = map.get(str.charAt(i));
+                for (int j = 0; j < str.length() - i - 1; j++) {
+                    num = num * 10;
+                }
+                ans += num;
+            }
+        }
+        if (ans > Integer.MAX_VALUE){
+            System.out.println(Integer.MAX_VALUE);
+        }else if (ans < Integer.MIN_VALUE){
+            System.out.println(Integer.MIN_VALUE);
+        }
+        if (fuShu){
+            System.out.println(-ans);
+        }else {
+            System.out.println(ans);
+        }
+    }
     public static void main(String[] args) {
-        String str = "ancdef 123 o";
-        strNiZhi(str);
+        String str = "123";
+        stringToNum(str);
     }
 }
 
