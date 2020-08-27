@@ -1997,9 +1997,46 @@ public class oneDayOJ {
             System.out.println(ans);
         }
     }
+    //---------------------------------------------------------------------------------------------------
+    //判断字符串中数字的个数
+    public static void strFindNum(String str){
+        int ans = 0;
+        for (int i = 0; i < str.length(); i++) {
+            if (str.charAt(i) >= '0' && str.charAt(i) <= '9'){
+                ans++;
+            }
+        }
+        System.out.println(ans);
+    }
+    //---------------------------------------------------------------------------------------------------
+    //如何判断一个数是否是2的k次方？这里不需要确定k的值。
+    public static Boolean is2DeCiFang(int n){
+        while (n > 0) {
+            if (n % 2 != 0) {
+                return false;
+            } else {
+                n /= 2;
+                if (n == 1){
+                    return true;
+                }
+            }
+        }
+        return true;
+    }
+    //---------------------------------------------------------------------------------------------------
+    //尼科彻斯定理
+    public static void niKeCheSi(int m){
+        int first = m * m - 2 * (m/2);
+        if (m % 2 == 0){
+            first++;
+        }
+        for (int i = 0; i < m; i++) {
+            System.out.println(first);
+            first += 2;
+        }
+    }
     public static void main(String[] args) {
-        String str = "123";
-        stringToNum(str);
+        niKeCheSi(8);
     }
 }
 
