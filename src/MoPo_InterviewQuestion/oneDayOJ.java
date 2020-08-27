@@ -2035,8 +2035,44 @@ public class oneDayOJ {
             first += 2;
         }
     }
+    //---------------------------------------------------------------------------------------------------
+    //删除链表的第K个节点
+    public static class Node{
+        int key;
+        Node next;
+    }
+    public static Node removeKthNode(Node head, int k) {
+        Node cur = head;
+        Node end = head;
+        for (int i = 0; i < k; i++) {
+            end = end.next;
+        }
+        while (end.next != null){
+            cur = cur.next;
+            end = end.next;
+        }
+        cur.next = cur.next.next;
+        return head;
+    }
+    public static void testRemoveKthNode(){
+        Node a = new Node();
+        Node b = new Node();
+        Node c = new Node();
+        Node d = new Node();
+        Node e = new Node();
+        a.key = 1;
+        b.key = 2;
+        c.key = 3;
+        d.key = 4;
+        e.key = 5;
+        a.next = b;
+        b.next = c;
+        c.next = d;
+        d.next = e;
+        removeKthNode(a,2);
+    }
     public static void main(String[] args) {
-        niKeCheSi(8);
+
     }
 }
 
